@@ -1,0 +1,128 @@
+import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer style={{ background: "#1a1a1a" }}>
+      {/* Main footer */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div>
+            <div className="mb-4">
+              <span
+                className="text-xs font-bold tracking-widest uppercase block"
+                style={{ color: "#DA291C" }}
+              >
+                comercializadora
+              </span>
+              <span className="text-2xl font-black" style={{ color: "#fff" }}>
+                Comercial Phone
+              </span>
+            </div>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#888" }}>
+              Comercializadora oficial de Claro Empresas. Conectamos empresas con la mejor tecnología de telecomunicaciones de Argentina.
+            </p>
+            <div className="flex gap-3">
+              {[
+                { Icon: Instagram, href: "#" },
+                { Icon: Facebook, href: "#" },
+                { Icon: Linkedin, href: "#" },
+              ].map(({ Icon, href }, i) => (
+                <a
+                  key={i}
+                  href={href}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80"
+                  style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Planes */}
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: "#fff" }}>
+              Planes
+            </h4>
+            <ul className="flex flex-col gap-2">
+              {["Hogar Básico", "Hogar Plus", "Hogar Pro", "Móvil Plus", "Móvil Pro", "Flota Empresarial"].map((p) => (
+                <li key={p}>
+                  <a href="#planes" className="text-sm transition-colors hover:text-white" style={{ color: "#888" }}>
+                    {p}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contacto */}
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: "#fff" }}>
+              Contacto
+            </h4>
+            <ul className="flex flex-col gap-3">
+              <li className="flex items-start gap-2">
+                <MapPin size={15} className="mt-0.5 flex-shrink-0" style={{ color: "#DA291C" }} />
+                <span className="text-sm" style={{ color: "#888" }}>
+                  Av. Corrientes 1234, Piso 5<br />
+                  Buenos Aires, Argentina
+                </span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
+                <a href="tel:+541100000000" className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
+                  +54 11 0000-0000
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
+                <a href="mailto:contacto@Comercial Phone.com.ar" className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
+                  contacto@Comercial Phone.com.ar
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Mapa */}
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: "#fff" }}>
+              Ubicación
+            </h4>
+            <div className="rounded-xl overflow-hidden" style={{ height: "160px" }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.99!2d-58.3815!3d-34.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacb8eb5c501%3A0x4d4c0b35614fd3d3!2sAv.%20Corrientes%201234%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+                width="100%"
+                height="160"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div
+        className="border-t px-4 py-4"
+        style={{ borderColor: "rgba(255,255,255,0.08)" }}
+      >
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs" style={{ color: "#555" }}>
+            © 2024 Comercial Phone — Comercializadora Empresas Claro. Todos los derechos reservados.
+          </p>
+          
+          <p className="text-xs" style={{ color: "#555" }}>
+            Página web Desarrollada por <a href="https://api.whatsapp.com/send/?phone=542236883110&text&type=phone_number&app_absent=0">IkuroSoft</a>
+          </p>
+          
+          <p className="text-xs" style={{ color: "#555" }}>
+            Distribuidor Oficial Autorizado de Claro Argentina
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
