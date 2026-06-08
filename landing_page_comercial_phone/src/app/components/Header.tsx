@@ -31,7 +31,7 @@ export function Header() {
                 className="text-lg font-black tracking-tight"
                 style={{ color: "#2D2D2D" }}
               >
-                Comercial Phonee
+                Comercial Phone
               </span>
             </div>
             <div
