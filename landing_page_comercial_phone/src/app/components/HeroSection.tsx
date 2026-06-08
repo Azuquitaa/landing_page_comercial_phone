@@ -39,7 +39,7 @@ export function HeroSection() {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src="../src/public/video/video-hero.mp4"
+          src="/video/video-hero.mp4"
           type="video/mp4"
         />
       </video>

@@ -16,7 +16,7 @@ export function Header() {
           {/* Logos izquierda */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <img
-                src="../src/public/img/logo-porta.jpeg"
+                src="/img/logo-porta.jpeg"
                 alt="Porta Empresas Pueyrredón"
                 className="h-20 w-auto"
               />
