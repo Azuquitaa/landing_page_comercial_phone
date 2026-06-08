@@ -1,2 +1,2 @@
 referencias/
-node_modules/
+landing_page_comercial_phone/node_modules/
