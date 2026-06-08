@@ -3,6 +3,8 @@ import { Send, Home, Smartphone } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { HeroPlanCard  } from "./HeroPlanCard";
 
+import videoHero from '@/assets/video-hero.mp4'
+
 const WA_NUMBER = "5491100000000";
 
 interface LeadForm {
@@ -39,7 +41,7 @@ export function HeroSection() {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src="/video/video-hero.mp4"
+          src={videoHero}
           type="video/mp4"
         />
       </video>

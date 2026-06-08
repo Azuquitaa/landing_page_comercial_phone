@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Home, Smartphone, User, Menu, X } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
+import logoPorta from '@/assets/logo-porta.jpeg'
+
 export function Header() {
   const { category, setCategory, setIsAdminOpen, isLoggedIn } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,7 +18,7 @@ export function Header() {
           {/* Logos izquierda */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <img
-                src="/img/logo-porta.jpeg"
+                src={logoPorta}
                 alt="Porta Empresas Pueyrredón"
                 className="h-20 w-auto"
               />
