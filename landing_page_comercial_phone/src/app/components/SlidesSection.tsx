@@ -48,10 +48,10 @@ export function SlidesSection() {
             ¿Por qué elegirnos?
           </span>
           <h2 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: "#E6E6E6" }}>
-            Ventajas exclusivas para tu empresa
+             Más gigas, más velocidad y más beneficios
           </h2>
           <p className="text-sm sm:text-base" style={{ color: "#aaa" }}>
-            Más que un proveedor, somos tu socio estratégico de conectividad.
+            Planes móviles e internet hogar con promociones exclusivas y atención personalizada.
           </p>
         </div>
 

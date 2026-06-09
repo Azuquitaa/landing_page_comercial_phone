@@ -300,39 +300,50 @@ export const initialPlansMovil: Plan[] = [
 export const initialSlides: Slide[] = [
   {
     id: "s1",
-    icon: "Zap",
-    title: "Activación Rápida",
-    description: "Tu servicio activo en menos de 24 horas. Proceso simple y sin trámites complicados.",
+    icon: "Gift",
+    title: "Promociones Exclusivas",
+    description:
+      "Accedé a descuentos especiales en portabilidad, líneas nuevas e internet hogar."
   },
+
   {
     id: "s2",
-    icon: "Gift",
-    title: "Oferta Limitada",
-    description: "Precios especiales por tiempo limitado. Aprovechá las promociones exclusivas de la comercializadora.",
+    icon: "Zap",
+    title: "Activación Rápida",
+    description:
+      "Comenzá a disfrutar tu servicio en pocos pasos y sin complicaciones."
   },
+
   {
     id: "s3",
-    icon: "Headphones",
-    title: "Atención Personalizada",
-    description: "Un asesor dedicado para acompañarte en cada etapa, desde la contratación hasta el postventa.",
+    icon: "Shield",
+    title: "Roaming Incluido",
+    description:
+      "Mantenete conectado cuando viajes con beneficios incluidos según tu plan."
   },
+
   {
     id: "s4",
-    icon: "UserCheck",
-    title: "Asesor Comercial",
-    description: "Contás con un asesor comercial exclusivo que conoce tu negocio y te ofrece la mejor solución.",
+    icon: "Headphones",
+    title: "Atención Personalizada",
+    description:
+      "Te acompañamos antes, durante y después de la contratación."
   },
+
   {
     id: "s5",
-    icon: "Shield",
-    title: "Soporte Especializado",
-    description: "Soporte técnico especializado disponible para resolver cualquier inconveniente rápidamente.",
+    icon: "Gift",
+    title: "Más Entretenimiento",
+    description:
+      "Disfrutá beneficios como Disney+, Amazon Prime, Paramount+ y más."
   },
+
   {
     id: "s6",
     icon: "Tag",
-    title: "Promociones Exclusivas",
-    description: "Accedé a promociones que no encontrarás en otro lado, diseñadas especialmente para empresas.",
+    title: "Precios Promocionales",
+    description:
+      "Aprovechá descuentos por tiempo limitado y pagá menos durante más tiempo."
   },
 ];
 
