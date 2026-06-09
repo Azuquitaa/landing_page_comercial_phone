@@ -42,131 +42,257 @@ export interface FAQ {
 
 export const initialPlansHogar: Plan[] = [
   {
-    id: "h2",
-    name: "Hogar Plus",
+    id: "h1",
 
-    price: "$19.999",
-    regularPrice: "$39.999",
+    name: "Fibra Óptica",
 
     promoText: "200 MB",
-    shortDescription: "Internet + Línea Fija con hasta 50% OFF",
+
+    price: "$18.999",
+
+    shortDescription: "Internet WiFi",
 
     priceNote: "por mes",
 
     features: [
-      "Internet 200 Mbps",
-      "TV Claro 120 canales",
-      "WiFi de alta velocidad",
-      "Claro Video incluido"
+      "Fibra óptica",
+      "WiFi incluido",
+      "Instalación sin cargo",
+      "Primer mes gratis"
     ],
 
     benefits: [
-      "Instalación gratuita",
-      "Router premium",
-      "Soporte prioritario",
-      "Sin costo de conexión"
+      "Claro Video",
+      "Paramount+",
+      "HBO Max x2 meses",
+      "Sin permanencia"
+    ],
+
+    recommended: false,
+    category: "hogar",
+  },
+
+  {
+    id: "h2",
+
+    name: "Fibra Óptica",
+
+    promoText: "500 MB",
+
+    price: "$21.999",
+
+    shortDescription: "Internet WiFi",
+
+    priceNote: "por mes",
+
+    features: [
+      "Fibra óptica",
+      "WiFi incluido",
+      "Instalación sin cargo",
+      "Primer mes gratis"
+    ],
+
+    benefits: [
+      "Claro Video",
+      "Paramount+",
+      "HBO Max x2 meses",
+      "Sin permanencia"
     ],
 
     recommended: true,
     badge: "Más Popular",
     category: "hogar",
   },
-  {
-    id: "h1",
-    name: "Hogar Básico",
-    price: "$12.999",
-    priceNote: "por mes",
-    features: ["Internet 50 Mbps", "TV Claro 80 canales", "WiFi incluido"],
-    benefits: ["Instalación gratuita", "Sin costo de conexión", "Soporte 24/7"],
-    recommended: false,
-    category: "hogar",
-  },
+
   {
     id: "h3",
-    name: "Hogar Pro",
-    price: "$29.999",
+
+    name: "Internet + TV",
+
+    promoText: "200 MB",
+
+    price: "$33.499",
+
+    shortDescription: "122 canales incluidos",
+
     priceNote: "por mes",
-    features: ["Internet 500 Mbps", "TV Claro 160 canales HD", "WiFi 6 incluido", "Claro Video + Netflix", "Línea fija incluida"],
-    benefits: ["Instalación express", "Router premium WiFi 6", "Soporte VIP", "Sin permanencia"],
+
+    features: [
+      "200 MB fibra",
+      "TV Digital",
+      "122 canales",
+      "Instalación gratis"
+    ],
+
+    benefits: [
+      "Claro Video",
+      "Paramount+",
+      "HBO Max x2 meses",
+      "Sin permanencia"
+    ],
+
     recommended: false,
-    badge: "Premium",
+    badge: "TV Incluida",
     category: "hogar",
   },
+
   {
     id: "h4",
-    name: "Hogar Empresarial",
-    price: "$45.999",
+
+    name: "Internet + TV",
+
+    promoText: "800 MB",
+
+    price: "$47.499",
+
+    shortDescription: "122 canales incluidos",
+
     priceNote: "por mes",
-    features: ["Internet 1 Gbps simétrico", "IP fija dedicada", "TV Premium 200 canales HD", "WiFi 6 mesh", "Claro Video + Pack completo"],
-    benefits: ["SLA garantizado", "Técnico dedicado", "Instalación en 24hs", "Factura electrónica"],
+
+    features: [
+      "800 MB fibra",
+      "TV Digital",
+      "122 canales",
+      "Instalación gratis"
+    ],
+
+    benefits: [
+      "Claro Video",
+      "Paramount+",
+      "HBO Max x2 meses",
+      "Sin permanencia"
+    ],
+
     recommended: false,
-    badge: "Empresas",
+    badge: "Premium",
     category: "hogar",
   },
 ];
 
 export const initialPlansMovil: Plan[] = [
   {
-    id: "m2",
-    name: "Móvil Plus",
+    id: "m1",
+    name: "Portabilidad Claro",
 
-    price: "$14.999",
-    regularPrice: "$24.999",
+    promoText: "2 GB",
 
-    promoText: "20 GB",
-    shortDescription: "Plan 5G con WhatsApp incluido",
+    price: "$11.900",
+    regularPrice: "$34.000",
+
+    shortDescription: "65% OFF por 6 meses",
 
     priceNote: "por mes",
 
     features: [
-      "20 GB de datos 4G/5G",
+      "WhatsApp libre",
       "Llamadas ilimitadas",
       "SMS ilimitados",
-      "WhatsApp sin consumir datos",
-      "Roaming LATAM"
+      "Roaming incluido"
     ],
 
     benefits: [
-      "Portabilidad gratuita",
-      "Chip 5G incluido",
-      "App Mi Claro",
-      "Datos acumulables"
+      "Disney+ 1 mes",
+      "Amazon Prime 1 mes",
+      "Claro Música",
+      "Claro Drive 25 GB"
+    ],
+
+    recommended: false,
+    category: "movil",
+  },
+
+  {
+    id: "m2",
+    name: "Portabilidad Claro",
+
+    promoText: "20 GB",
+
+    price: "$43.237",
+    regularPrice: "$123.534",
+
+    shortDescription: "65% OFF por 6 meses",
+
+    priceNote: "por mes",
+
+    features: [
+      "20 GB 4G/5G",
+      "WhatsApp libre",
+      "Llamadas ilimitadas",
+      "Roaming incluido"
+    ],
+
+    benefits: [
+      "Disney+ 1 mes",
+      "Amazon Prime 1 mes",
+      "Claro Música",
+      "Claro Drive 25 GB"
     ],
 
     recommended: true,
-    badge: "Más Popular",
+    badge: "Más Elegido",
     category: "movil",
   },
-  {
-    id: "m1",
-    name: "Móvil Básico",
-    price: "$8.999",
-    priceNote: "por mes",
-    features: ["5 GB de datos 4G", "200 min llamadas", "SMS ilimitados", "Red 4G LTE"],
-    benefits: ["Portabilidad gratuita", "Sin costo de alta", "App Mi Claro"],
-    recommended: false,
-    category: "movil",
-  },
+
   {
     id: "m3",
-    name: "Móvil Pro",
-    price: "$21.999",
+    name: "Portabilidad Claro",
+
+    promoText: "30 GB",
+
+    price: "$50.330",
+    regularPrice: "$143.800",
+
+    shortDescription: "65% OFF por 6 meses",
+
     priceNote: "por mes",
-    features: ["50 GB de datos 5G", "Llamadas ilimitadas", "SMS ilimitados", "Redes sociales libres", "Roaming Internacional", "Hotspot 10 GB"],
-    benefits: ["Portabilidad express", "Chip 5G premium", "Soporte prioritario", "Datos acumulables"],
+
+    features: [
+      "30 GB 4G/5G",
+      "WhatsApp libre",
+      "Llamadas ilimitadas",
+      "Roaming incluido"
+    ],
+
+    benefits: [
+      "Disney+ 1 mes",
+      "Amazon Prime 1 mes",
+      "Claro Música",
+      "Claro Drive 25 GB"
+    ],
+
     recommended: false,
-    badge: "5G",
+    badge: "Máximo",
     category: "movil",
   },
+
   {
     id: "m4",
-    name: "Flota Empresarial",
-    price: "Consultar",
-    priceNote: "precio por línea",
-    features: ["Datos ilimitados 5G", "Llamadas ilimitadas", "SMS ilimitados", "MDM incluido", "Dashboard de gestión", "API de facturación"],
-    benefits: ["Contrato corporativo", "Account manager", "SLA garantizado", "Factura centralizada"],
+    name: "Línea Nueva",
+
+    promoText: "20 + 10 GB",
+
+    price: "$23.421",
+
+    shortDescription: "80% OFF por 1 año",
+
+    priceNote: "por mes",
+
+    features: [
+      "30 GB totales",
+      "WhatsApp libre",
+      "Llamadas ilimitadas",
+      "Roaming incluido"
+    ],
+
+    benefits: [
+      "Disney+ 1 mes",
+      "Amazon Prime 1 mes",
+      "Claro Video",
+      "Claro Drive 25 GB"
+    ],
+
     recommended: false,
-    badge: "Corporativo",
+    badge: "Línea Nueva",
     category: "movil",
   },
 ];

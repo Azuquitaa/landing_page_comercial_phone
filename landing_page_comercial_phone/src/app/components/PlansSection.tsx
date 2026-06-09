@@ -15,11 +15,17 @@ export function PlansSection() {
           >
             {category === "hogar" ? "Planes Hogar" : "Planes Móvil"}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: "#2D2D2D" }}>
-            Elegí el plan ideal para tu empresa
+          <h2
+            className="text-3xl sm:text-4xl font-black mb-2"
+            style={{ color: "#2D2D2D" }}
+          >
+            Promociones Exclusivas Claro
           </h2>
-          <p className="text-sm sm:text-base max-w-lg mx-auto" style={{ color: "#717182" }}>
-            Todos los planes incluyen soporte personalizado y asesoramiento comercial sin costo adicional.
+          <p
+            className="text-sm sm:text-base max-w-2xl mx-auto"
+            style={{ color: "#717182" }}
+          >
+            Portabilidad, líneas nuevas e internet hogar con descuentos especiales por tiempo limitado.
           </p>
         </div>
 

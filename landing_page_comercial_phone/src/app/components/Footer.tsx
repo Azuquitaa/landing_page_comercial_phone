@@ -13,15 +13,18 @@ export function Footer() {
                 className="text-xs font-bold tracking-widest uppercase block"
                 style={{ color: "#DA291C" }}
               >
-                comercializadora
+                agente oficial claro
               </span>
               <span className="text-2xl font-black" style={{ color: "#fff" }}>
                 Comercial Phone
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#888" }}>
-              Comercializadora oficial de Claro Empresas. Conectamos empresas con la mejor tecnología de telecomunicaciones de Argentina.
+              Conectamos personas con la mejor experiencia en internet, telefonía móvil y entretenimiento.            </p>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#888" }}>
+               Horario de atención lunes a viernes de 9:00 a 18:00
             </p>
+            
             <div className="flex gap-3">
               {[
                 { Icon: Instagram, href: "#" },
@@ -46,7 +49,14 @@ export function Footer() {
               Planes
             </h4>
             <ul className="flex flex-col gap-2">
-              {["Hogar Básico", "Hogar Plus", "Hogar Pro", "Móvil Plus", "Móvil Pro", "Flota Empresarial"].map((p) => (
+              {[
+                  "Internet Fibra Óptica",
+                  "Internet + TV",
+                  "Portabilidad Claro",
+                  "Línea Nueva",
+                  "Beneficios",
+                  "Preguntas Frecuentes"
+                ].map((p) => (
                 <li key={p}>
                   <a href="#planes" className="text-sm transition-colors hover:text-white" style={{ color: "#888" }}>
                     {p}

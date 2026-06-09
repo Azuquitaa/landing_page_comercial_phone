@@ -49,35 +49,93 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
 
       <div className={`flex flex-col flex-1 ${compact ? "p-5" : "p-7"}`} style={{ paddingTop: plan.recommended || plan.badge ? (compact ? "2.5rem" : "3rem") : undefined }}>
         {/* Header */}
-        <div className="mb-4">
-          <h3
-            className="text-lg font-bold mb-1"
-            style={{ color: plan.recommended ? "#fff" : "#2D2D2D" }}
-          >
-            {plan.name}
-          </h3>
-          <div className="flex items-end gap-1">
-            <span
+        <div className="text-center mb-6">
+          {plan.shortDescription && (
+            <div
+              className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3"
+              style={{
+                background: "#DA291C",
+                color: "#fff",
+              }}
+            >
+              {plan.shortDescription}
+            </div>
+          )}
+
+          {plan.promoText && (
+            <>
+              <p
+                className="text-sm font-bold uppercase"
+                style={{
+                  color: plan.recommended ? "#fff" : "#2D2D2D",
+                }}
+              >
+                Plan
+              </p>
+
+              <h2
+                className="font-black"
+                style={{
+                  fontSize: "3rem",
+                  color: "#DA291C",
+                  lineHeight: 1,
+                }}
+              >
+                {plan.promoText}
+              </h2>
+            </>
+          )}
+
+          <div className="mt-4">
+
+            {plan.regularPrice && (
+              <p
+                className="line-through text-sm"
+                style={{
+                  color: plan.recommended ? "#999" : "#717182",
+                }}
+              >
+                Antes {plan.regularPrice}
+              </p>
+            )}
+
+            <h3
               className="font-black"
               style={{
-                color: plan.recommended ? "#DA291C" : "#DA291C",
-                fontSize: plan.price === "Consultar" ? "1.5rem" : "2rem",
-                lineHeight: 1,
+                fontSize: "2.5rem",
+                color: "#00A6B2",
               }}
             >
               {plan.price}
-            </span>
-            {plan.priceNote && (
-              <span
-                className="text-xs mb-1"
-                style={{ color: plan.recommended ? "#ccc" : "#717182" }}
-              >
-                {plan.priceNote}
-              </span>
-            )}
+            </h3>
+
+            <p
+              style={{
+                color: plan.recommended ? "#ccc" : "#717182",
+              }}
+            >
+              por mes
+            </p>
           </div>
         </div>
+        
+        <div className="grid grid-cols-2 gap-2 mb-5">
+          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
+            WhatsApp Libre
+          </div>
 
+          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
+            Disney+
+          </div>
+
+          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
+            Claro Drive
+          </div>
+
+          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
+            Amazon Prime
+          </div>
+        </div>
         {/* Features */}
         <ul className="flex flex-col gap-2 mb-4 flex-1">
           {plan.features.map((f, i) => (
@@ -127,14 +185,26 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
           href={getWhatsAppLink(plan)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all duration-200 hover:opacity-90 active:scale-95"
+          className="
+            flex
+            items-center
+            justify-center
+            gap-2
+            py-4
+            rounded-xl
+            font-black
+            text-base
+            transition-all
+            duration-200
+            hover:scale-105
+            "
           style={{
             background: "#DA291C",
             color: "#fff",
           }}
         >
           <MessageCircle size={18} />
-          LO QUIERO
+          QUIERO ESTA PROMO
         </a>
       </div>
     </div>

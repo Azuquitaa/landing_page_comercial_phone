@@ -27,7 +27,7 @@ export function Header() {
                 className="text-xs font-bold tracking-widest uppercase"
                 style={{ color: "#DA291C" }}
               >
-                comercializadora
+                agente oficial claro
               </span>
               <span
                 className="text-lg font-black tracking-tight"

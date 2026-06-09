@@ -31,7 +31,7 @@ interface AppContextValue {
 const AppContext = createContext<AppContextValue | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [category, setCategory] = useState<Category>("hogar");
+  const [category, setCategory] = useState<Category>("movil");
   const [plansHogar, setPlansHogar] = useState<Plan[]>(initialPlansHogar);
   const [plansMovil, setPlansMovil] = useState<Plan[]>(initialPlansMovil);
   const [slides, setSlides] = useState<Slide[]>(initialSlides);
