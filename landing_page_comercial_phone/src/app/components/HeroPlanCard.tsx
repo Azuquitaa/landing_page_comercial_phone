@@ -12,8 +12,11 @@ export function HeroPlanCard({ plan }: Props) {
     className="p-6 text-center"
     style={{ background: "#DA291C" }}
   >
+    <p className="text-3xl font-black uppercase">
+          Plan {plan.category}
+    </p>
     <p className="text-sm text-white uppercase">
-      Desde
+      a solo
     </p>
 
     <h2 className="text-6xl font-black text-white">

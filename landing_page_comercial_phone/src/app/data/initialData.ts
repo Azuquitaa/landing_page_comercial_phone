@@ -228,7 +228,7 @@ export const initialPlansMovil: Plan[] = [
       "Claro Drive 25 GB"
     ],
 
-    recommended: true,
+    recommended: false,
     badge: "Más Elegido",
     category: "movil",
   },
@@ -272,6 +272,7 @@ export const initialPlansMovil: Plan[] = [
     promoText: "20 + 10 GB",
 
     price: "$23.421",
+    regularPrice: "$117.105",
 
     shortDescription: "80% OFF por 1 año",
 
@@ -291,7 +292,7 @@ export const initialPlansMovil: Plan[] = [
       "Claro Drive 25 GB"
     ],
 
-    recommended: false,
+    recommended: true,
     badge: "Línea Nueva",
     category: "movil",
   },
