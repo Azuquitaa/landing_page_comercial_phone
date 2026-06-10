@@ -1,4 +1,6 @@
 import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+const WA_NUMBER = "541160262100";
+const WA_MSG = encodeURIComponent("Hola! Me interesa conocer los planes disponibles.");
 
 export function Footer() {
   return (
@@ -27,7 +29,7 @@ export function Footer() {
             
             <div className="flex gap-3">
               {[
-                { Icon: Instagram, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/comercial.phone.corporativo_?igsh=NW5mM3lzZWMwdjV5" },
                 { Icon: Facebook, href: "#" },
                 { Icon: Linkedin, href: "#" },
               ].map(({ Icon, href }, i) => (
@@ -81,14 +83,18 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
-                <a href="tel:+541100000000" className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
-                  +54 11 0000-0000
+                <a href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`} className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
+                  +54 1160262100
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
-                <a href="mailto:contacto@Comercial Phone.com.ar" className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
-                  contacto@Comercial Phone.com.ar
+                <a 
+                  href="mailto:contacto@comercialphone.com.ar" 
+                  className="text-sm hover:text-white transition-colors" 
+                  style={{ color: "#888" }}
+                >
+                  contacto@comercialphone.com.ar
                 </a>
               </li>
             </ul>
@@ -101,7 +107,7 @@ export function Footer() {
             </h4>
             <div className="rounded-xl overflow-hidden" style={{ height: "160px" }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.99!2d-58.3815!3d-34.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacb8eb5c501%3A0x4d4c0b35614fd3d3!2sAv.%20Corrientes%201234%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26271.76940239565!2d-58.411380451171876!3d-34.60368439999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses!2sar!4v1715817600000"
                 width="100%"
                 height="160"
                 style={{ border: 0 }}
