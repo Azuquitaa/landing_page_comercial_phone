@@ -1,0 +1,21 @@
+# Proteger archivos sensibles
+<FilesMatch "^(users\.json|content\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Evitar listado de directorios
+Options -Indexes
+
+# Redirigir todo a index.html (SPA)
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Headers de seguridad
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "DENY"
+Header set X-XSS-Protection "1; mode=block"

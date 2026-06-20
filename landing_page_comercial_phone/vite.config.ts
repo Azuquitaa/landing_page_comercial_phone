@@ -24,6 +24,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:8000',  // ← Tu servidor PHP
+  //       changeOrigin: true,
+  //       secure: false,
+  //     }
+  //   }
+  // },
   resolve: {
     alias: {
       // Alias @ to the src directory

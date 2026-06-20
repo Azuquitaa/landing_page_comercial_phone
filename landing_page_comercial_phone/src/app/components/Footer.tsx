@@ -27,11 +27,12 @@ export function Footer() {
                Horario de atención lunes a viernes de 9:00 a 18:00
             </p>
             
-            <div className="flex gap-3">
+            {/* <div className="flex gap-3">
               {[
                 { Icon: Instagram, href: "https://www.instagram.com/comercial.phone.corporativo_?igsh=NW5mM3lzZWMwdjV5" },
-                { Icon: Facebook, href: "#" },
-                { Icon: Linkedin, href: "#" },
+                { Icon: Instagram, href: "https://www.instagram.com/comercial.phone?igsh=MTZweWh1M21jdzMyag==" },
+                // { Icon: Facebook, href: "#" },
+                // { Icon: Linkedin, href: "#" },
               ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
@@ -42,7 +43,38 @@ export function Footer() {
                   <Icon size={16} />
                 </a>
               ))}
+            </div> */}
+            <div className="flex gap-3">
+              {/* Instagram Corporativo - Color rojo Claro */}
+              <a
+                href="https://www.instagram.com/comercial.phone.corporativo_?igsh=NW5mM3lzZWMwdjV5"
+                className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 relative group"
+                style={{ background: "rgba(218, 41, 28, 0.2)", color: "#DA291C" }}
+                title="Instagram Corporativo"
+              >
+                <Instagram size={16} />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Corporativo
+                </span>
+              </a>
+
+              {/* Instagram Personal - Gradiente Instagram */}
+              <a
+                href="https://www.instagram.com/comercial.phone?igsh=MTZweWh1M21jdzMyag=="
+                className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 relative group"
+                style={{ 
+                  background: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                  color: "#fff"
+                }}
+                title="Instagram Personal"
+              >
+                <Instagram size={16} />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Personal
+                </span>
+              </a>
             </div>
+          
           </div>
 
           {/* Planes */}
@@ -74,20 +106,20 @@ export function Footer() {
               Contacto
             </h4>
             <ul className="flex flex-col gap-3">
-              <li className="flex items-start gap-2">
+              {/* <li className="flex items-start gap-2">
                 <MapPin size={15} className="mt-0.5 flex-shrink-0" style={{ color: "#DA291C" }} />
                 <span className="text-sm" style={{ color: "#888" }}>
                   Av. Corrientes 1234, Piso 5<br />
                   Buenos Aires, Argentina
                 </span>
-              </li>
+              </li> */}
               <li className="flex items-center gap-2">
                 <Phone size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`} className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
                   +54 1160262100
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+              {/* <li className="flex items-center gap-2">
                 <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a 
                   href="mailto:contacto@comercialphone.com.ar" 
@@ -96,7 +128,7 @@ export function Footer() {
                 >
                   contacto@comercialphone.com.ar
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 

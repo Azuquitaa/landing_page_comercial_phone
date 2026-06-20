@@ -1,0 +1,135 @@
+{
+    "82782b2a030344520ee9e1abbcd76160c99b61c0a1f646eac333ccd0bc366539": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "cf74a3924d3300903b0e89628b48818f7cad35fcca2351888180bb2e07b7e785": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "3edaec230035cb3066b0ed9354319c7ffaf7d570e3c9c40a6e4da48e41061b30": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "91abf848ae97b7d040420b331f5b798d13411f066693774cce0ee203cefc93d0": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "e105235763bb42e5c43801475c6e47876341c4df57046447603e33a6a88afeed": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "d7e515f4bfe5fc398ad7596ff3fa802c9a01db009b8e9118f580600c614d066b": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "46e990866206c0669642f1fb8c4f23bb0f843e83b0bde62f8537431c89113c65": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "550b3322092804f958b9c72ccd9df84f499be17130f012681a4d3e82bf330b7b": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "7aa8ce102815bf89f54eb106ea56414ccd7a7d893c37b302d711d68d5c990e1b": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "35693654e2cbeb7a767e5d23e7a98dd76b040898a3a8b46cc799d1db91e97331": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "b22abb963e9db90e33d99e5719817a9473be9f0b82b9e332a409afe12f2a5eb2": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "b9e281f5cbf6f4f67840f83a351eb2c3f1767491989799118fb26185b4cf1124": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "ef6f58c63406e8da1662ebb18cecaaa51a065fa63f28c6df4aa7699837c259f6": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:14:27+02:00",
+        "expires_at": "2026-06-22T01:14:27+02:00"
+    },
+    "9da86377025eb376ee1230598ad8ff0e84a4d7d008fccfd5889806ac3f25e9a8": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:15:03+02:00",
+        "expires_at": "2026-06-22T01:15:03+02:00"
+    },
+    "928b4c578a97de7512ab7bba77d2fe2f426cfaa990fd580cf3908bdb5ad9adec": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:17:54+02:00",
+        "expires_at": "2026-06-22T01:17:54+02:00"
+    },
+    "bed3ca3ae796e0ae9f5f8cb95bc0b06178544ef0e6638359a6cec932f2a13ff9": {
+        "user_id": "user-6a371fcd6b6f1",
+        "username": "hola",
+        "role": "editor",
+        "created_at": "2026-06-21T01:18:46+02:00",
+        "expires_at": "2026-06-22T01:18:46+02:00"
+    },
+    "38aa1af7b6c76517b8543279983efa1279d7b6b3a474083db0e5a048699ff329": {
+        "user_id": "user-6a371fcd6b6f1",
+        "username": "hola",
+        "role": "editor",
+        "created_at": "2026-06-21T01:20:37+02:00",
+        "expires_at": "2026-06-22T01:20:37+02:00"
+    },
+    "1b026dbc24a7bf43f69fc219c243dad0e6e2c4d2f8605da4ef10337a42a93c0c": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:30:02+02:00",
+        "expires_at": "2026-06-22T01:30:02+02:00"
+    },
+    "9e2aae49873497f97802ce600b0fba3e98848bb927645f5b1addd9ec60e0f41b": {
+        "user_id": "admin-001",
+        "username": "admin",
+        "role": "admin",
+        "created_at": "2026-06-21T01:47:35+02:00",
+        "expires_at": "2026-06-22T01:47:35+02:00"
+    }
+}
