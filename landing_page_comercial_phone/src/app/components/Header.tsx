@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Home, Smartphone, User, Menu, X } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
-import logoPorta from '@/assets/logo-porta.jpeg'
+import logoPorta from '@/assets/logo-porta.png'
 
 export function Header() {
   const { category, setCategory, setIsAdminOpen, isLoggedIn } = useApp();

@@ -9,6 +9,7 @@ type AdminTab = "hogar" | "movil" | "slides" | "faqs" | "usuarios";
 
 export function AdminPanel() {
   const {
+    loading,
     isAdminOpen,
     setIsAdminOpen,
     isLoggedIn,
@@ -39,7 +40,8 @@ export function AdminPanel() {
   const [loginError, setLoginError] = useState(false);
   const [tab, setTab] = useState<AdminTab>("hogar");
   const [saved, setSaved] = useState(false);
-  const [saving, setSaving] = useState(false); // ← Para mostrar carga al guardar
+  const [saving, setSaving] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   // Estados para agregar usuario
   const [newUsername, setNewUsername] = useState("");
@@ -50,6 +52,17 @@ export function AdminPanel() {
 
   if (!isAdminOpen) return null;
 
+  if (loading) {
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center" 
+         style={{ background: "rgba(0,0,0,0.7)" }}>
+      <div className="text-white text-center">
+        <div className="w-10 h-10 border-2 border-t-red-500 border-white/20 rounded-full animate-spin mx-auto mb-3"></div>
+        <p className="text-sm">Cargando panel...</p>
+      </div>
+    </div>
+  );
+}
   // MODIFICAR handleLogin para usar la API
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();

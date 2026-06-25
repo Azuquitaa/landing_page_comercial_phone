@@ -1,0 +1,20 @@
+# 1. Ir a la carpeta del proyecto
+cd /var/www/html/comercial-phone
+
+# Cambiar el dueño de TODO a tu usuario
+sudo chown -R ikurosoft:www-data /var/www/html/comercial-phone
+
+# Dar permisos de escritura a todo
+sudo chmod -R 775 /var/www/html/comercial-phone
+
+# Verificar
+ls -la
+
+# Volver a dar permisos correctos para Apache
+sudo chown -R www-data:www-data /var/www/html/comercial-phone
+
+# La carpeta data necesita escritura para PHP
+sudo chmod -R 777 /var/www/html/comercial-phone/data
+
+# Reiniciar Apache
+sudo systemctl restart apache2

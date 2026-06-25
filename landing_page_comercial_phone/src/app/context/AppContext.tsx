@@ -49,7 +49,8 @@ interface AppContextValue {
 
 const AppContext = createContext<AppContextValue | null>(null);
 
-const API_URL = window.location.origin + '/api';
+const API_URL = window.location.origin + '/comercial-phone/api';
+// const API_URL = window.location.origin + '/api';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>("movil");

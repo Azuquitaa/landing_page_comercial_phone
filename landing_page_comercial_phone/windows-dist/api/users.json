@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": "admin-001",
+            "username": "admin",
+            "passwordHash": "e55a89ce2842918f550a80789a33c04674a039f62e13b6c450e0cac77c36b1c1",
+            "role": "admin",
+            "createdAt": "2024-01-01T00:00:00.000Z"
+        },
+        {
+            "id": "user-6a371fcd6b6f1",
+            "username": "hola",
+            "passwordHash": "f9bc4f7c3c2c05ed8234444d9e10c1c2e86ec167a592134dfb42c15a1172f986",
+            "role": "editor",
+            "createdAt": "2026-06-21T01:18:37+02:00"
+        }
+    ]
+}
