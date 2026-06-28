@@ -5,6 +5,16 @@ export function PlansSection() {
   const { category, plansHogar, plansMovil } = useApp();
   const plans = category === "hogar" ? plansHogar : plansMovil;
 
+  if (!plans || plans.length === 0) {
+    return (
+      <section className="py-16 px-4" style={{ background: "#F8F8F8" }}>
+        <div className="max-w-7xl mx-auto text-center">
+          <p style={{ color: "#717182" }}>Cargando planes...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 px-4" style={{ background: "#F8F8F8" }}>
       <div className="max-w-7xl mx-auto">

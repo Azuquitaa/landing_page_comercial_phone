@@ -15,7 +15,7 @@ $contentFile = __DIR__ . '/../data/content.json';
 $backupFile = __DIR__ . '/../data/backup.json';
 $sessionsFile = __DIR__ . '/../data/sessions.json';
 
-// // ✅ Verificar token
+// // Verificar token
 // $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 // $token = str_replace('Bearer ', '', $token);
 
@@ -71,12 +71,28 @@ $action = $_GET['action'] ?? '';
 
 switch ($action) {
     case 'backup':
+        error_log("Intentando backup. Content: $contentFile, Backup: $backupFile");
+        error_log("Content existe: " . (file_exists($contentFile) ? 'SI' : 'NO'));
+        error_log("Directorio data escribible: " . (is_writable(dirname($backupFile)) ? 'SI' : 'NO'));
+
         if (!file_exists($contentFile)) {
             echo json_encode(['error' => 'No hay datos para respaldar']);
             exit;
         }
         
-        copy($contentFile, $backupFile);
+        $content = file_get_contents($contentFile);
+    
+        // Escribir en backup
+        $result = file_put_contents($backupFile, $content);
+        
+        if ($result === false) {
+            echo json_encode([
+                'error' => 'No se pudo crear backup. Verifica permisos de escritura en /data/',
+                'debug' => ['backupFile' => $backupFile]
+            ]);
+            exit;
+        }
+        
         echo json_encode([
             'success' => true,
             'message' => 'Backup creado exitosamente',

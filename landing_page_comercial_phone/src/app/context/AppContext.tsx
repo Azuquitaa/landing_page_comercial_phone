@@ -40,13 +40,14 @@ interface AppContextValue {
   addUser: (username: string, password: string, role: 'admin' | 'editor') => Promise<boolean>;
   removeUser: (userId: string) => Promise<boolean>;
   saveContent: () => Promise<boolean>;
-  resetContent: () => Promise<boolean>;      // ← NUEVO
-  createBackup: () => Promise<boolean>;       // ← NUEVO
-  restoreBackup: () => Promise<boolean>;      // ← NUEVO
+  resetContent: () => Promise<boolean>;     
+  // createBackup: () => Promise<boolean>;      
+  restoreBackup: () => Promise<boolean>;     
   loading: boolean;
   error: string | null;
   backupMessage: string | null;
   setBackupMessage: (msg: string | null) => void;
+  createBackup: (token?: string) => Promise<boolean>;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -56,10 +57,14 @@ const API_URL = window.location.origin + '/comercial-phone/api';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>("movil");
-  const [plansHogar, setPlansHogar] = useState<Plan[]>(initialPlansHogar);
-  const [plansMovil, setPlansMovil] = useState<Plan[]>(initialPlansMovil);
-  const [slides, setSlides] = useState<Slide[]>(initialSlides);
-  const [faqs, setFaqs] = useState<FAQ[]>(initialFAQs);
+  // const [plansHogar, setPlansHogar] = useState<Plan[]>(initialPlansHogar);
+  // const [plansMovil, setPlansMovil] = useState<Plan[]>(initialPlansMovil);
+  const [plansHogar, setPlansHogar] = useState<Plan[]>([]);
+  const [plansMovil, setPlansMovil] = useState<Plan[]>([]);
+  const [slides, setSlides] = useState<Slide[]>([]);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  // const [slides, setSlides] = useState<Slide[]>(initialSlides);
+  // const [faqs, setFaqs] = useState<FAQ[]>(initialFAQs);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -100,39 +105,48 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const response = await fetch(`${API_URL}/data.php`);
       if (response.ok) {
         const data = await response.json();
-        // Si el servidor tiene datos, usarlos
-        if (data.plansHogar && data.plansHogar.length > 0) {
-          setPlansHogar(data.plansHogar);
-        }
-        if (data.plansMovil && data.plansMovil.length > 0) {
-          setPlansMovil(data.plansMovil);
-        }
-        if (data.slides && data.slides.length > 0) {
-          setSlides(data.slides);
-        }
-        if (data.faqs && data.faqs.length > 0) {
-          setFaqs(data.faqs);
-        }
-        console.log('✅ Datos cargados del servidor');
+        
+        //  Validar cada campo
+        setPlansHogar(data.plansHogar?.length > 0 ? data.plansHogar : initialPlansHogar);
+        setPlansMovil(data.plansMovil?.length > 0 ? data.plansMovil : initialPlansMovil);
+        setSlides(data.slides?.length > 0 ? data.slides : initialSlides);
+        setFaqs(data.faqs?.length > 0 ? data.faqs : initialFAQs);
+        
+        console.log('Datos cargados del servidor');
+      } else {
+        // Si falla, usar initialData
+        setPlansHogar(initialPlansHogar);
+        setPlansMovil(initialPlansMovil);
+        setSlides(initialSlides);
+        setFaqs(initialFAQs);
       }
     } catch (err) {
-      console.log('ℹ️ Usando datos locales (initialData.ts)');
+      console.log('⚠️ Error, usando datos locales');
+      setPlansHogar(initialPlansHogar);
+      setPlansMovil(initialPlansMovil);
+      setSlides(initialSlides);
+      setFaqs(initialFAQs);
     } finally {
       setLoading(false);
     }
   }
 
   //  CREAR BACKUP: Guarda estado actual como respaldo
-  async function createBackup(): Promise<boolean> {
-    if (!authToken) return false;
+  async function createBackup(token?: string): Promise<boolean> {
+    const tokenToUse = token || authToken;
+    
+    if (!tokenToUse) {
+      console.error('❌ No hay authToken');
+      return false;
+    }
     
     try {
       const response = await fetch(`${API_URL}/backup.php?action=backup`, {
-        headers: { 'Authorization': `Bearer ${authToken}` }
+        headers: { 'Authorization': `Bearer ${tokenToUse}` }
       });
       
       if (response.ok) {
-        console.log('✅ Backup creado exitosamente');
+        console.log('Backup creado exitosamente');
         return true;
       }
       return false;
@@ -154,7 +168,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         // Recargar datos del servidor
         await loadContentFromServer();
-        console.log('✅ Backup restaurado exitosamente');
+        console.log('Backup restaurado exitosamente');
         return true;
       }
       return false;
@@ -179,7 +193,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPlansMovil(initialPlansMovil);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
-        console.log('✅ Contenido reseteado a valores originales');
+        console.log('Contenido reseteado a valores originales');
         return true;
       }
       return false;
@@ -199,20 +213,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
       if (response.ok) {
         const data = await response.json();
+        
+        // Primero guardar el token
+        const newToken = data.token;
+        
         setCurrentUser(data.user);
         setIsLoggedIn(true);
-        setAuthToken(data.token);
-        localStorage.setItem('auth_token', data.token);
+        setAuthToken(newToken);
+        localStorage.setItem('auth_token', newToken);
         localStorage.setItem('current_user', JSON.stringify(data.user));
         
-        //  Al iniciar sesión, crear backup automático
-        const backupOk = await createBackup();
+        // Usar el token directamente, no esperar al estado
+        const backupOk = await createBackup(newToken);
         if (backupOk) {
           setBackupMessage('Backup creado exitosamente');
         } else {
           setBackupMessage('No se pudo crear backup');
         }
-        console.log('🔒 Sesión iniciada y backup creado');
+        console.log('🔒 Sesión iniciada');
         
         return data.user;
       }
@@ -262,7 +280,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       });
 
       if (response.ok) {
-        console.log('✅ Contenido guardado en el servidor');
+        console.log('Contenido guardado en el servidor');
         return true;
       } else {
         console.error('Error del servidor al guardar');

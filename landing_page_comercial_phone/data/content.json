@@ -21,6 +21,75 @@
             ],
             "recommended": false,
             "category": "hogar"
+        },
+        {
+            "id": "h2",
+            "name": "Fibra Óptica",
+            "promoText": "500 MB",
+            "price": "$21.999",
+            "shortDescription": "Internet WiFi",
+            "priceNote": "por mes",
+            "features": [
+                "Fibra óptica",
+                "WiFi incluido",
+                "Instalación sin cargo",
+                "Primer mes gratis"
+            ],
+            "benefits": [
+                "Claro Video",
+                "Paramount+",
+                "HBO Max x2 meses",
+                "Sin permanencia"
+            ],
+            "recommended": true,
+            "badge": "Más Popular",
+            "category": "hogar"
+        },
+        {
+            "id": "h3",
+            "name": "Internet + TV",
+            "promoText": "200 MB",
+            "price": "$33.499",
+            "shortDescription": "122 canales incluidos",
+            "priceNote": "por mes",
+            "features": [
+                "200 MB fibra",
+                "TV Digital",
+                "122 canales",
+                "Instalación gratis"
+            ],
+            "benefits": [
+                "Claro Video",
+                "Paramount+",
+                "HBO Max x2 meses",
+                "Sin permanencia"
+            ],
+            "recommended": false,
+            "badge": "TV Incluida",
+            "category": "hogar"
+        },
+        {
+            "id": "h4",
+            "name": "Internet + TV",
+            "promoText": "800 MB",
+            "price": "$47.499",
+            "shortDescription": "122 canales incluidos",
+            "priceNote": "por mes",
+            "features": [
+                "800 MB fibra",
+                "TV Digital",
+                "122 canales",
+                "Instalación gratis"
+            ],
+            "benefits": [
+                "Claro Video",
+                "Paramount+",
+                "HBO Max x2 meses",
+                "Sin permanencia"
+            ],
+            "recommended": false,
+            "badge": "Premium",
+            "category": "hogar"
         }
     ],
     "plansMovil": [
@@ -28,7 +97,7 @@
             "id": "m1",
             "name": "Portabilidad Claro",
             "promoText": "2 GB",
-            "price": "$11.955",
+            "price": "$11.900",
             "regularPrice": "$34.000",
             "shortDescription": "65% OFF por 6 meses",
             "priceNote": "por mes",
@@ -208,6 +277,6 @@
             "category": "general"
         }
     ],
-    "lastUpdated": "2026-06-21T01:30:29+02:00",
+    "lastUpdated": "2026-06-27T00:00:00+00:00",
     "updatedBy": "admin"
 }

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// ✅ FUNCIÓN PARA OBTENER TOKEN (compatible Ubuntu y Windows)
+//  FUNCIÓN PARA OBTENER TOKEN (compatible Ubuntu y Windows)
 function getBearerToken() {
     $token = '';
     
@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 // POST: Guardar datos (requiere token)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ✅ Verificar token en archivo de sesiones
     $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
     $token = str_replace('Bearer ', '', $token);
     

@@ -24,13 +24,26 @@ export function SlidesSection() {
   const { slides } = useApp();
   const [current, setCurrent] = useState(0);
 
-  const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), [slides.length]);
-  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % (slides.length || 1)), [slides.length]);
+  const prev = () => setCurrent((c) => (c - 1 + (slides.length || 1)) % (slides.length || 1));
 
   useEffect(() => {
-    const id = setInterval(next, 4000);
-    return () => clearInterval(id);
-  }, [next]);
+    if (slides.length > 0) {
+      const id = setInterval(next, 4000);
+      return () => clearInterval(id);
+    }
+  }, [next, slides.length]);
+
+  // ✅ El return de protección va DESPUÉS de todos los hooks
+  if (!slides || slides.length === 0) {
+    return (
+      <section className="py-16 px-4" style={{ background: "#2D2D2D" }}>
+        <div className="max-w-7xl mx-auto text-center">
+          <p style={{ color: "#aaa" }}>Cargando beneficios...</p>
+        </div>
+      </section>
+    );
+  }
 
   const visibleCount = 3;
   const getVisible = () => {
@@ -87,7 +100,7 @@ export function SlidesSection() {
 
         {/* Mobile: mostrar 1 slide */}
         <div className="md:hidden">
-          {(() => {
+           {slides[current] && (() => {
             const slide = slides[current];
             const Icon = ICON_MAP[slide.icon] || Shield;
             return (
