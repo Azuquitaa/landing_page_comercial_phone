@@ -18,3 +18,12 @@ sudo chmod -R 777 /var/www/html/comercial-phone/data
 
 # Reiniciar Apache
 sudo systemctl restart apache2
+
+# rapido
+cd /var/www/html/comercial-phone
+sudo chown -R ikurosoft:www-data /var/www/html/comercial-phone
+sudo chmod -R 775 /var/www/html/comercial-phone
+
+sudo chown -R www-data:www-data /var/www/html/comercial-phone
+sudo chmod -R 777 /var/www/html/comercial-phone/data
+sudo systemctl restart apache2

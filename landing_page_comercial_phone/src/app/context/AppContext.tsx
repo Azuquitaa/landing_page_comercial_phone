@@ -45,6 +45,8 @@ interface AppContextValue {
   restoreBackup: () => Promise<boolean>;      // ← NUEVO
   loading: boolean;
   error: string | null;
+  backupMessage: string | null;
+  setBackupMessage: (msg: string | null) => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -65,6 +67,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [backupMessage, setBackupMessage] = useState<string | null>(null);
+
 
   useEffect(() => {
     loadContentFromServer();
@@ -118,7 +122,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // ✅ CREAR BACKUP: Guarda estado actual como respaldo
+  //  CREAR BACKUP: Guarda estado actual como respaldo
   async function createBackup(): Promise<boolean> {
     if (!authToken) return false;
     
@@ -138,7 +142,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // ✅ RESTAURAR BACKUP: Vuelve al último backup
+  //  RESTAURAR BACKUP: Vuelve al último backup
   async function restoreBackup(): Promise<boolean> {
     if (!authToken) return false;
     
@@ -160,7 +164,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // ✅ RESET: Volver a initialData.ts (valores originales)
+  // RESET: Volver a initialData.ts (valores originales)
   async function resetContent(): Promise<boolean> {
     if (!authToken) return false;
     
@@ -201,8 +205,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('auth_token', data.token);
         localStorage.setItem('current_user', JSON.stringify(data.user));
         
-        // ✅ Al iniciar sesión, crear backup automático
-        await createBackup();
+        //  Al iniciar sesión, crear backup automático
+        const backupOk = await createBackup();
+        if (backupOk) {
+          setBackupMessage('Backup creado exitosamente');
+        } else {
+          setBackupMessage('No se pudo crear backup');
+        }
         console.log('🔒 Sesión iniciada y backup creado');
         
         return data.user;
@@ -215,11 +224,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function logout() {
-    // ✅ Al cerrar sesión, guardar estado actual en el servidor
+    // Al cerrar sesión, guardar estado actual en el servidor
     if (authToken) {
       await saveContent();
     }
-    
+    setBackupMessage(null);
     setCurrentUser(null);
     setIsLoggedIn(false);
     setAuthToken(null);
@@ -352,7 +361,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     createBackup,       // ← NUEVO
     restoreBackup,      // ← NUEVO
     loading,
-    error
+    error,
+    backupMessage,
+    setBackupMessage,
   };
 
   return (

@@ -32,6 +32,7 @@ export function AdminPanel() {
     resetContent,    
     restoreBackup,   
     createBackup,
+    backupMessage
   } = useApp();
 
   // estado para username
@@ -228,22 +229,30 @@ export function AdminPanel() {
           </div>
           <div className="flex items-center gap-2">
             {isLoggedIn && (
+                <>
+                  {/* Mensaje de backup - SEPARADO del botón */}
+                  {backupMessage && (
+                    <span className="text-xs px-2 py-1 rounded" style={{ background: "rgba(37,211,102,0.2)", color: "#25D366" }}>
+                      ✅ {backupMessage}
+                    </span>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:bg-white/10"
+                    style={{ color: "#aaa" }}
+                  >
+                    <LogOut size={14} />
+                    Salir
+                  </button>
+                </>
+              )}
               <button
-                onClick={handleLogout}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:bg-white/10"
+                onClick={() => setIsAdminOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg transition-all hover:bg-white/10"
                 style={{ color: "#aaa" }}
               >
-                <LogOut size={14} />
-                Salir
+                <X size={18} />
               </button>
-            )}
-            <button
-              onClick={() => setIsAdminOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-lg transition-all hover:bg-white/10"
-              style={{ color: "#aaa" }}
-            >
-              <X size={18} />
-            </button>
           </div>
         </div>
 
@@ -358,7 +367,8 @@ export function AdminPanel() {
                         </button>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                      {/* PRIMERA FILA: Nombre, Precio, Precio Regular */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
                         <div>
                           <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
                             Nombre
@@ -383,15 +393,70 @@ export function AdminPanel() {
                         </div>
                         <div>
                           <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
-                            Badge (ej: Popular)
+                            Precio Regular (tachado)
                           </label>
                           <input
-                            value={plan.badge ?? ""}
-                            onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "badge", e.target.value)}
+                            value={plan.regularPrice ?? ""}
+                            onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "regularPrice", e.target.value)}
+                            placeholder="Ej: $34.000"
                             className="w-full px-3 py-2 rounded-lg text-sm outline-none"
                             style={{ border: "1.5px solid #E6E6E6" }}
                           />
                         </div>
+                      </div>
+
+                      {/* SEGUNDA FILA: PromoText, ShortDescription, Badge */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                        <div>
+                          <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                            Texto Promo (ej: 200 MB)
+                          </label>
+                          <input
+                            value={plan.promoText ?? ""}
+                            onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "promoText", e.target.value)}
+                            placeholder="Ej: 200 MB"
+                            className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                            style={{ border: "1.5px solid #E6E6E6" }}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                            Descripción Corta
+                          </label>
+                          <input
+                            value={plan.shortDescription ?? ""}
+                            onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "shortDescription", e.target.value)}
+                            placeholder="Ej: Internet WiFi"
+                            className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                            style={{ border: "1.5px solid #E6E6E6" }}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                            Badge (ej: Más Popular)
+                          </label>
+                          <input
+                            value={plan.badge ?? ""}
+                            onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "badge", e.target.value)}
+                            placeholder="Ej: Más Popular"
+                            className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                            style={{ border: "1.5px solid #E6E6E6" }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* TERCERA FILA: PriceNote */}
+                      <div className="mb-3">
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Nota de Precio (ej: por mes)
+                        </label>
+                        <input
+                          value={plan.priceNote ?? ""}
+                          onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "priceNote", e.target.value)}
+                          placeholder="Ej: por mes"
+                          className="w-full sm:w-1/3 px-3 py-2 rounded-lg text-sm outline-none"
+                          style={{ border: "1.5px solid #E6E6E6" }}
+                        />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
