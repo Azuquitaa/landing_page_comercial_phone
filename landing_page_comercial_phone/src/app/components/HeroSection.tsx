@@ -5,7 +5,8 @@ import { HeroPlanCard  } from "./HeroPlanCard";
 
 import videoHero from '@/assets/video-hero.mp4'
 
-const WA_NUMBER = "5491100000000";
+const WA_NUMBER = "541160262100";
+
 
 interface LeadForm {
   celular: string;

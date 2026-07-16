@@ -17,8 +17,8 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: '/comercial-phone/',
-  // base: '/',
+  // base: '/comercial-phone/',
+  base: '/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
@@ -29,7 +29,7 @@ export default defineConfig({
   // server: {
   //   proxy: {
   //     '/api': {
-  //       target: 'http://localhost:8000',  // ← Tu servidor PHP
+  //       target: 'http://localhost:8000',  //mi servidor PHP
   //       changeOrigin: true,
   //       secure: false,
   //     }

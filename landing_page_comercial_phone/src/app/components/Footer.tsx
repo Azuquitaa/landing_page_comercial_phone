@@ -119,16 +119,16 @@ export function Footer() {
                   +54 1160262100
                 </a>
               </li>
-              {/* <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2">
                 <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a 
                   href="mailto:contacto@comercialphone.com.ar" 
                   className="text-sm hover:text-white transition-colors" 
                   style={{ color: "#888" }}
                 >
-                  contacto@comercialphone.com.ar
+                  contactos@comercialphone.com.ar
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
 

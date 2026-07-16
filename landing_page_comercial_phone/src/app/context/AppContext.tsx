@@ -52,8 +52,8 @@ interface AppContextValue {
 
 const AppContext = createContext<AppContextValue | null>(null);
 
-const API_URL = window.location.origin + '/comercial-phone/api';
-// const API_URL = window.location.origin + '/api';
+// const API_URL = window.location.origin + '/comercial-phone/api';
+const API_URL = window.location.origin + '/api';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>("movil");
@@ -112,7 +112,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setSlides(data.slides?.length > 0 ? data.slides : initialSlides);
         setFaqs(data.faqs?.length > 0 ? data.faqs : initialFAQs);
         
-        console.log('Datos cargados del servidor');
+        // console.log('Datos cargados del servidor');
       } else {
         // Si falla, usar initialData
         setPlansHogar(initialPlansHogar);
@@ -121,7 +121,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setFaqs(initialFAQs);
       }
     } catch (err) {
-      console.log('⚠️ Error, usando datos locales');
+      // console.log('⚠️ Error, usando datos locales');
       setPlansHogar(initialPlansHogar);
       setPlansMovil(initialPlansMovil);
       setSlides(initialSlides);
@@ -136,7 +136,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const tokenToUse = token || authToken;
     
     if (!tokenToUse) {
-      console.error('❌ No hay authToken');
+      // console.error('❌ No hay authToken');
       return false;
     }
     
@@ -146,12 +146,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       });
       
       if (response.ok) {
-        console.log('Backup creado exitosamente');
+        // console.log('Backup creado exitosamente');
         return true;
       }
       return false;
     } catch (err) {
-      console.error('Error creando backup:', err);
+      // console.error('Error creando backup:', err);
       return false;
     }
   }
@@ -168,12 +168,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         // Recargar datos del servidor
         await loadContentFromServer();
-        console.log('Backup restaurado exitosamente');
+        // console.log('Backup restaurado exitosamente');
         return true;
       }
       return false;
     } catch (err) {
-      console.error('Error restaurando backup:', err);
+      // console.error('Error restaurando backup:', err);
       return false;
     }
   }
@@ -193,12 +193,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPlansMovil(initialPlansMovil);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
-        console.log('Contenido reseteado a valores originales');
+        // console.log('Contenido reseteado a valores originales');
         return true;
       }
       return false;
     } catch (err) {
-      console.error('Error reseteando contenido:', err);
+      // console.error('Error reseteando contenido:', err);
       return false;
     }
   }
@@ -230,7 +230,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         } else {
           setBackupMessage('No se pudo crear backup');
         }
-        console.log('🔒 Sesión iniciada');
+        // console.log('🔒 Sesión iniciada');
         
         return data.user;
       }
@@ -258,7 +258,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   async function saveContent(): Promise<boolean> {
     if (!authToken) {
-      console.error('No hay token de autenticación');
+      // console.error('No hay token de autenticación');
       return false;
     }
 
@@ -280,7 +280,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       });
 
       if (response.ok) {
-        console.log('Contenido guardado en el servidor');
+        // console.log('Contenido guardado en el servidor');
         return true;
       } else {
         console.error('Error del servidor al guardar');
@@ -327,7 +327,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       }
       return false;
     } catch (err) {
-      console.error('Error agregando usuario:', err);
+      // console.error('Error agregando usuario:', err);
       return false;
     }
   }
