@@ -122,7 +122,7 @@ export function Footer() {
               <li className="flex items-center gap-2">
                 <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a 
-                  href="mailto:contacto@comercialphone.com.ar" 
+                  href="mailto:contactos@comercialphone.com.ar" 
                   className="text-sm hover:text-white transition-colors" 
                   style={{ color: "#888" }}
                 >
