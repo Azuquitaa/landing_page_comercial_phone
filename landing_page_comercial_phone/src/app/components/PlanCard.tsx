@@ -1,7 +1,7 @@
 import { Check, MessageCircle } from "lucide-react";
 import { Plan } from "../data/initialData";
 
-const WA_NUMBER = "5491100000000";
+const WA_NUMBER = "541137888582";
 
 function getWhatsAppLink(plan: Plan) {
   const msg = encodeURIComponent(

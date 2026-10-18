@@ -23,7 +23,7 @@ export interface Plan {
   benefits: string[];
   recommended: boolean;
   badge?: string;
-  category: "hogar" | "movil";
+  category: "hogar" | "movil" | "pymes";
 }
 
 export interface Slide {
@@ -296,6 +296,78 @@ export const initialPlansMovil: Plan[] = [
     badge: "Línea Nueva",
     category: "movil",
   },
+];
+
+export const initialPlansPymes: Plan[] = [
+  {
+    id: "p1",
+    name: "Pyme Básico",
+    promoText: "100 MB",
+    price: "$29.999",
+    shortDescription: "Internet dedicado para tu negocio",
+    priceNote: "por mes",
+    features: [
+      "100 MB simétricos",
+      "IP fija incluida",
+      "Soporte prioritario",
+      "Instalación sin cargo"
+    ],
+    benefits: [
+      "Facturación electrónica",
+      "Gestión de múltiples líneas",
+      "Asesor comercial dedicado",
+      "Sin permanencia"
+    ],
+    recommended: false,
+    category: "pymes"
+  },
+  {
+    id: "p2",
+    name: "Pyme Profesional",
+    promoText: "300 MB",
+    price: "$49.999",
+    shortDescription: "Internet + telefonía para equipos",
+    priceNote: "por mes",
+    features: [
+      "300 MB simétricos",
+      "2 líneas telefónicas",
+      "IP fija incluida",
+      "Soporte 24/7"
+    ],
+    benefits: [
+      "Facturación electrónica",
+      "Gestión de múltiples líneas",
+      "Asesor comercial dedicado",
+      "Backup 4G automático"
+    ],
+    recommended: true,
+    badge: "Más Elegido",
+    category: "pymes"
+  },
+  {
+    id: "p3",
+    name: "Pyme Empresa",
+    promoText: "500 MB",
+    price: "$79.999",
+    shortDescription: "Solución integral para empresas",
+    priceNote: "por mes",
+    features: [
+      "500 MB simétricos",
+      "4 líneas telefónicas",
+      "IP fija + bloque de IPs",
+      "Soporte 24/7 prioritario"
+    ],
+    benefits: [
+      "Facturación electrónica",
+      "Gestión de múltiples líneas",
+      "Asesor comercial dedicado",
+      "Backup 4G automático",
+      "SLA garantizado"
+    ],
+    recommended: false,
+    badge: "Premium",
+    category: "pymes"
+  }
 ];
 
 export const initialSlides: Slide[] = [

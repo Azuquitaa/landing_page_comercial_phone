@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
-const WA_NUMBER = "541160262100";
+const WA_NUMBER = "541137888582";
 const WA_MSG = encodeURIComponent("Hola! Me interesa conocer los planes disponibles.");
 
 export function Footer() {
@@ -116,7 +116,7 @@ export function Footer() {
               <li className="flex items-center gap-2">
                 <Phone size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`} className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
-                  +54 1160262100
+                  +54 1137888582
                 </a>
               </li>
               <li className="flex items-center gap-2">

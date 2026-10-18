@@ -66,6 +66,7 @@ if (!file_exists($dataFile)) {
     $initialData = [
         'plansHogar' => [],
         'plansMovil' => [],
+        'plansPymes' => [],
         'slides' => [],
         'faqs' => [],
         'lastUpdated' => date('c')

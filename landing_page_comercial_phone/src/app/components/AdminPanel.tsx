@@ -5,7 +5,7 @@ import { Plan, Slide, FAQ } from "../data/initialData";
 
 // const ADMIN_PASSWORD = "admin2024";
 
-type AdminTab = "hogar" | "movil" | "slides" | "faqs" | "usuarios";
+type AdminTab = "hogar" | "movil" | "pymes" | "slides" | "faqs" | "usuarios";
 
 export function AdminPanel() {
   const {
@@ -18,6 +18,8 @@ export function AdminPanel() {
     setPlansHogar,
     plansMovil,
     setPlansMovil,
+    plansPymes,
+    setPlansPymes,
     slides,
     setSlides,
     faqs,
@@ -143,7 +145,7 @@ export function AdminPanel() {
     setter(plans.map((p) => ({ ...p, recommended: p.id === id })));
   }
 
-  function addPlan(plans: Plan[], setter: (p: Plan[]) => void, cat: "hogar" | "movil") {
+  function addPlan(plans: Plan[], setter: (p: Plan[]) => void, cat: "hogar" | "movil" | "pymes") {
     const newPlan: Plan = {
       id: `${cat}_${Date.now()}`,
       name: "Nuevo Plan",
@@ -194,6 +196,7 @@ export function AdminPanel() {
   const allTabs: { id: AdminTab; label: string; adminOnly?: boolean }[] = [
     { id: "hogar", label: "Planes Hogar" },
     { id: "movil", label: "Planes Móvil" },
+    { id: "pymes", label: "Planes Pymes" },
     { id: "slides", label: "Slides" },
     { id: "faqs", label: "FAQs" },
     { id: "usuarios", label: "Usuarios", adminOnly: true },
@@ -202,8 +205,17 @@ export function AdminPanel() {
   //  Filtrar tabs según rol del usuario
   const tabs = allTabs.filter(t => !t.adminOnly || currentUser?.role === 'admin');
 
-  const currentPlans = tab === "hogar" ? plansHogar : plansMovil;
-  const currentSetter = tab === "hogar" ? setPlansHogar : setPlansMovil;
+  const currentPlans =
+    tab === "hogar" ? plansHogar :
+    tab === "movil" ? plansMovil :
+    tab === "pymes" ? plansPymes :
+    [];
+
+  const currentSetter =
+    tab === "hogar" ? setPlansHogar :
+    tab === "movil" ? setPlansMovil :
+    tab === "pymes" ? setPlansPymes :
+    (() => {});
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}>
@@ -332,8 +344,8 @@ export function AdminPanel() {
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6">
-              {/* Plans editor - SE MANTIENE IGUAL */}
-              {(tab === "hogar" || tab === "movil") && (
+        
+              {(tab === "hogar" || tab === "movil" || tab === "pymes") && (
                 <div className="flex flex-col gap-5">
                   {currentPlans.map((plan) => (
                     <div
@@ -534,7 +546,7 @@ export function AdminPanel() {
                   ))}
 
                   <button
-                    onClick={() => addPlan(currentPlans, currentSetter, tab as "hogar" | "movil")}
+                    onClick={() => addPlan(currentPlans, currentSetter, tab as "hogar" | "movil" | "pymes")}
                     className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold border-2 border-dashed transition-all hover:border-red-300"
                     style={{ borderColor: "#E6E6E6", color: "#717182" }}
                   >
@@ -544,7 +556,7 @@ export function AdminPanel() {
                 </div>
               )}
 
-              {/* Slides editor - SE MANTIENE IGUAL */}
+              {/* Slides editor */}
               {tab === "slides" && (
                 <div className="flex flex-col gap-4">
                   {slides.map((slide, si) => (
@@ -613,7 +625,7 @@ export function AdminPanel() {
                 </div>
               )}
 
-              {/* FAQs editor - SE MANTIENE IGUAL */}
+              {/* FAQs editor  */}
               {tab === "faqs" && (
                 <div className="flex flex-col gap-4">
                   {faqs.map((faq, fi) => (

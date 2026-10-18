@@ -5,11 +5,12 @@ import {
   FAQ,
   initialPlansHogar,
   initialPlansMovil,
+  initialPlansPymes,
   initialSlides,
   initialFAQs,
 } from "../data/initialData";
 
-type Category = "hogar" | "movil";
+type Category = "hogar" | "movil" | "pymes";
 
 interface User {
   id: string;
@@ -20,11 +21,13 @@ interface User {
 
 interface AppContextValue {
   category: Category;
-  setCategory: (c: Category) => void;
+  setCategory: (c: Category) => void; 
   plansHogar: Plan[];
-  setPlansHogar: (p: Plan[]) => void;
+  setPlansHogar: (p: Plan[]) => void; // PLAN HOGAR
   plansMovil: Plan[];
-  setPlansMovil: (p: Plan[]) => void;
+  setPlansMovil: (p: Plan[]) => void;// PLAN MOVIL
+  plansPymes: Plan[];
+  setPlansPymes: (p: Plan[]) => void; // PLAN PYMES
   slides: Slide[];
   setSlides: (s: Slide[]) => void;
   faqs: FAQ[];
@@ -52,8 +55,10 @@ interface AppContextValue {
 
 const AppContext = createContext<AppContextValue | null>(null);
 
-// const API_URL = window.location.origin + '/comercial-phone/api';
-const API_URL = window.location.origin + '/api';
+// cambiar esto para local
+
+const API_URL = window.location.origin + '/comercial-phone/api';
+// const API_URL = window.location.origin + '/api';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>("movil");
@@ -61,6 +66,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // const [plansMovil, setPlansMovil] = useState<Plan[]>(initialPlansMovil);
   const [plansHogar, setPlansHogar] = useState<Plan[]>([]);
   const [plansMovil, setPlansMovil] = useState<Plan[]>([]);
+  const [plansPymes, setPlansPymes] = useState<Plan[]>([]);
   const [slides, setSlides] = useState<Slide[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   // const [slides, setSlides] = useState<Slide[]>(initialSlides);
@@ -109,6 +115,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         //  Validar cada campo
         setPlansHogar(data.plansHogar?.length > 0 ? data.plansHogar : initialPlansHogar);
         setPlansMovil(data.plansMovil?.length > 0 ? data.plansMovil : initialPlansMovil);
+        setPlansPymes(data.plansPymes?.length > 0 ? data.plansPymes : initialPlansPymes);
         setSlides(data.slides?.length > 0 ? data.slides : initialSlides);
         setFaqs(data.faqs?.length > 0 ? data.faqs : initialFAQs);
         
@@ -117,6 +124,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         // Si falla, usar initialData
         setPlansHogar(initialPlansHogar);
         setPlansMovil(initialPlansMovil);
+        setPlansPymes(initialPlansPymes);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
       }
@@ -124,6 +132,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       // console.log('⚠️ Error, usando datos locales');
       setPlansHogar(initialPlansHogar);
       setPlansMovil(initialPlansMovil);
+      setPlansPymes(initialPlansPymes);
       setSlides(initialSlides);
       setFaqs(initialFAQs);
     } finally {
@@ -191,6 +200,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         // Volver a los valores iniciales
         setPlansHogar(initialPlansHogar);
         setPlansMovil(initialPlansMovil);
+        setPlansPymes(initialPlansPymes);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
         // console.log('Contenido reseteado a valores originales');
@@ -266,6 +276,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const content = {
         plansHogar,
         plansMovil,
+        plansPymes,
         slides,
         faqs
       };
@@ -360,6 +371,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPlansHogar,
     plansMovil,
     setPlansMovil,
+    plansPymes,
+    setPlansPymes,
     slides,
     setSlides,
     faqs,
@@ -375,9 +388,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     addUser,
     removeUser,
     saveContent,
-    resetContent,       // ← NUEVO
-    createBackup,       // ← NUEVO
-    restoreBackup,      // ← NUEVO
+    resetContent,       
+    createBackup,       
+    restoreBackup,      
     loading,
     error,
     backupMessage,

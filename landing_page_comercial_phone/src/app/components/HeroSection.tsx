@@ -5,7 +5,7 @@ import { HeroPlanCard  } from "./HeroPlanCard";
 
 import videoHero from '@/assets/video-hero.mp4'
 
-const WA_NUMBER = "541160262100";
+const WA_NUMBER = "541137888582";
 
 
 interface LeadForm {
@@ -14,11 +14,16 @@ interface LeadForm {
 }
 
 export function HeroSection() {
-  const { category, setCategory, plansHogar, plansMovil } = useApp();
+  const { category, setCategory, plansHogar, plansMovil,plansPymes } = useApp();
   const [form, setForm] = useState<LeadForm>({ celular: "", dni: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const plans = category === "hogar" ? plansHogar : plansMovil;
+  const plansByCategory = {
+    hogar:plansHogar,
+    movil:plansMovil,
+    pymes:plansPymes,
+  }
+  const plans = plansByCategory[category] ?? [];
   const recommended = plans.find((p) => p.recommended) ?? plans[0];
 
   function handleSubmit(e: React.FormEvent) {
@@ -64,6 +69,7 @@ export function HeroSection() {
           <Home size={16} />
           Hogar
         </button>
+
         <button
           onClick={() => setCategory("movil")}
           className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
@@ -71,6 +77,15 @@ export function HeroSection() {
         >
           <Smartphone size={16} />
           Móvil
+        </button>
+        
+        <button
+          onClick={() => setCategory("pymes")}
+          className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+          style={category === "pymes" ? { background: "#DA291C", color: "#fff" } : { background: "#E6E6E6", color: "#2D2D2D" }}
+        >
+          <Smartphone size={16} />
+          Pymes
         </button>
       </div>
 

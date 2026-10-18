@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Home, Smartphone, User, Menu, X } from "lucide-react";
+import { Home, Smartphone, User, Menu, X, Building2 } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
 import logoPorta from '@/assets/logo-porta.png'
@@ -19,14 +19,12 @@ export function Header() {
           
           {/*  LOGOS IZQUIERDA - Más pequeño */}
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            {/* Logo Porta */}
             <img
               src={logoPorta}
               alt="Porta Empresas Pueyrredón"
               className="h-10 sm:h-12 w-auto"
             />
             
-            {/* Texto Comercial Phone */}
             <div className="flex flex-col leading-none">
               <span
                 className="text-[8px] sm:text-[10px] font-bold tracking-widest uppercase"
@@ -42,13 +40,11 @@ export function Header() {
               </span>
             </div>
             
-            {/* Separador vertical */}
             <div
               className="w-px h-6 sm:h-8 hidden sm:block mx-0.5"
               style={{ background: "#E6E6E6" }}
             />
             
-            {/* Logo Claro + texto debajo */}
             <div className="hidden sm:flex flex-col items-center leading-none">
               <img
                 src={logoClaro}
@@ -64,19 +60,11 @@ export function Header() {
             </div>
           </div>
 
-          {/* NAV CENTRAL - Enlaces rápidos */}
-          {/* <nav className="hidden lg:flex items-center gap-6 text-sm font-medium" style={{ color: "#2D2D2D" }}>
-            <a href="#planes" className="hover:text-[#DA291C] transition-colors">Planes</a>
-            <a href="#beneficios" className="hover:text-[#DA291C] transition-colors">Beneficios</a>
-            <a href="#faqs" className="hover:text-[#DA291C] transition-colors">FAQ</a>
-            <a href="#contacto" className="hover:text-[#DA291C] transition-colors">Contacto</a>
-          </nav> */}
-
           {/* SELECTOR DE PLANES - Centrado */}
-          <div className="hidden md:flex items-center gap-1 bg-gray-100 rounded-full p-1 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden lg:flex items-center gap-1 bg-gray-100 rounded-full p-1 absolute left-1/2 transform -translate-x-1/2">
             <button
               onClick={() => setCategory("hogar")}
-              className="flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
+              className="flex items-center gap-2 px-4 xl:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
               style={
                 category === "hogar"
                   ? { background: "#DA291C", color: "#fff" }
@@ -88,7 +76,7 @@ export function Header() {
             </button>
             <button
               onClick={() => setCategory("movil")}
-              className="flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
+              className="flex items-center gap-2 px-4 xl:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
               style={
                 category === "movil"
                   ? { background: "#DA291C", color: "#fff" }
@@ -98,11 +86,22 @@ export function Header() {
               <Smartphone size={16} />
               Plan Móvil
             </button>
+            <button
+              onClick={() => setCategory("pymes")}
+              className="flex items-center gap-2 px-4 xl:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
+              style={
+                category === "pymes"
+                  ? { background: "#DA291C", color: "#fff" }
+                  : { color: "#2D2D2D" }
+              }
+            >
+              <Building2 size={16} />
+              Plan Pymes
+            </button>
           </div>
 
           {/* DERECHA - Admin panel oculto */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            {/* Admin Panel - Oculto en el footer o al final de la página */}
             <button
               onClick={() => setIsAdminOpen(true)}
               className="p-1.5 rounded-full transition-all hover:bg-gray-100 opacity-30 hover:opacity-100"
@@ -117,9 +116,8 @@ export function Header() {
               </div>
             </button>
             
-            {/* Hamburguesa mobile */}
             <button
-              className="md:hidden p-2 rounded-lg"
+              className="lg:hidden p-2 rounded-lg"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -130,8 +128,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 px-4 py-4 flex flex-col gap-2">
-          {/* Selector mobile */}
+        <div className="lg:hidden border-t border-gray-100 px-4 py-4 flex flex-col gap-2">
           <button
             onClick={() => { setCategory("hogar"); setMobileMenuOpen(false); }}
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
@@ -156,8 +153,19 @@ export function Header() {
             <Smartphone size={18} />
             Plan Móvil
           </button>
+          <button
+            onClick={() => { setCategory("pymes"); setMobileMenuOpen(false); }}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
+            style={
+              category === "pymes"
+                ? { background: "#DA291C", color: "#fff" }
+                : { background: "#F5F5F5", color: "#2D2D2D" }
+            }
+          >
+            <Smartphone size={18} />
+            Plan Pymes
+          </button>
           
-          {/* Enlaces mobile */}
           <div className="border-t border-gray-200 mt-2 pt-2 flex flex-col gap-1">
             <a href="#planes" className="px-4 py-2 text-sm hover:bg-gray-50 rounded-lg">Planes</a>
             <a href="#beneficios" className="px-4 py-2 text-sm hover:bg-gray-50 rounded-lg">Beneficios</a>
