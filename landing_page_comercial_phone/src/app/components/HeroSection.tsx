@@ -4,8 +4,10 @@ import { useApp } from "../context/AppContext";
 import { HeroPlanCard  } from "./HeroPlanCard";
 
 import videoHero from '@/assets/video-hero.mp4'
+import videoMovil from '@/assets/movil.mp4'
+import videoHogar from '@/assets/hogar.mp4'
+import videoPymes from '@/assets/pymes.mp4'
 
-const WA_NUMBER = "541137888582";
 
 
 interface LeadForm {
@@ -14,9 +16,11 @@ interface LeadForm {
 }
 
 export function HeroSection() {
-  const { category, setCategory, plansHogar, plansMovil,plansPymes } = useApp();
+  const { category, setCategory, plansHogar, plansMovil,plansPymes, contactInfo } = useApp();
   const [form, setForm] = useState<LeadForm>({ celular: "", dni: "" });
   const [submitted, setSubmitted] = useState(false);
+  
+  const WA_NUMBER = contactInfo.whatsappNumber;
 
   const plansByCategory = {
     hogar:plansHogar,
@@ -25,6 +29,13 @@ export function HeroSection() {
   }
   const plans = plansByCategory[category] ?? [];
   const recommended = plans.find((p) => p.recommended) ?? plans[0];
+
+  const videosByCategory = {
+    hogar: videoHogar,
+    movil: videoMovil,
+    pymes: videoPymes,
+  };
+  const currentVideo = videosByCategory[category] ?? videoHero;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,14 +51,16 @@ export function HeroSection() {
     <section className="relative pt-30 pb-16 px-4 overflow-hidden">
 
       <video
+        key={currentVideo}
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src={videoHero}
+          src={currentVideo}
           type="video/mp4"
         />
       </video>

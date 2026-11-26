@@ -1,14 +1,7 @@
 import { Check, MessageCircle } from "lucide-react";
 import { Plan } from "../data/initialData";
+import { useApp } from "../context/AppContext";
 
-const WA_NUMBER = "541137888582";
-
-function getWhatsAppLink(plan: Plan) {
-  const msg = encodeURIComponent(
-    `Hola! Me interesa el ${plan.name} (${plan.price}/mes). ¿Me pueden asesorar?`
-  );
-  return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-}
 
 interface PlanCardProps {
   plan: Plan;
@@ -16,6 +9,16 @@ interface PlanCardProps {
 }
 
 export function PlanCard({ plan, compact = false }: PlanCardProps) {
+
+  const { contactInfo } = useApp();
+  const WA_NUMBER = contactInfo.whatsappNumber;
+
+  const getWhatsAppLink = (p: Plan) => {
+    const msg = encodeURIComponent(
+      `Hola! Me interesa el ${p.name} (${p.price}${p.priceNote ? ` ${p.priceNote}` : ""}). ¿Me pueden asesorar?`
+    );
+    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  };
   return (
     <div
       className="relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
@@ -70,7 +73,7 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
                   color: plan.recommended ? "#fff" : "#2D2D2D",
                 }}
               >
-                Plan
+                {plan.name || "Plan"}
               </p>
 
               <h2
@@ -87,7 +90,6 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
           )}
 
           <div className="mt-4">
-
             {plan.regularPrice && (
               <p
                 className="line-through text-sm"
@@ -109,33 +111,37 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
               {plan.price}
             </h3>
 
-            <p
-              style={{
-                color: plan.recommended ? "#ccc" : "#717182",
-              }}
-            >
-              por mes
-            </p>
+            {/* priceNote dinámico (antes decía "por mes" hardcodeado) */}
+            {plan.priceNote && (
+              <p
+                style={{
+                  color: plan.recommended ? "#ccc" : "#717182",
+                }}
+              >
+                {plan.priceNote}
+              </p>
+            )}
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-2 mb-5">
-          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
-            WhatsApp Libre
+        {/* Grid de beneficios rápidos (ANTES hardcodeado, ahora dinámico) */}
+        {plan.benefits && plan.benefits.length > 0 && (
+          <div className="grid grid-cols-2 gap-2 mb-5">
+            {plan.benefits.slice(0, 4).map((benefit, index) => (
+              <div 
+                key={index} 
+                className="rounded-lg p-2 text-center text-xs"
+                style={{ 
+                  background: plan.recommended ? "rgba(255,255,255,0.1)" : "#F5F5F5",
+                  color: plan.recommended ? "#E6E6E6" : "#2D2D2D"
+                }}
+              >
+                {benefit}
+              </div>
+            ))}
           </div>
+        )}
 
-          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
-            Disney+
-          </div>
-
-          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
-            Claro Drive
-          </div>
-
-          <div className="bg-gray-100 rounded-lg p-2 text-center text-xs">
-            Amazon Prime
-          </div>
-        </div>
         {/* Features */}
         <ul className="flex flex-col gap-2 mb-4 flex-1">
           {plan.features.map((f, i) => (
@@ -152,8 +158,8 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
           ))}
         </ul>
 
-        {/* Benefits */}
-        {!compact && (
+        {/* Benefits (los tags de abajo) */}
+        {!compact && plan.benefits && plan.benefits.length > 4 && (
           <div className="mb-5">
             <p
               className="text-xs font-semibold uppercase tracking-wider mb-2"
@@ -162,7 +168,7 @@ export function PlanCard({ plan, compact = false }: PlanCardProps) {
               Beneficios
             </p>
             <div className="flex flex-wrap gap-1">
-              {plan.benefits.map((b, i) => (
+              {plan.benefits.slice(4).map((b, i) => (
                 <span
                   key={i}
                   className="text-xs px-2 py-1 rounded-full"

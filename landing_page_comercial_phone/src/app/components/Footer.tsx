@@ -1,8 +1,14 @@
 import { MapPin, Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
-const WA_NUMBER = "541137888582";
-const WA_MSG = encodeURIComponent("Hola! Me interesa conocer los planes disponibles.");
+import { useApp } from "../context/AppContext";
+
+// const WA_NUMBER = "541137888582";
+// const WA_MSG = encodeURIComponent("Hola! Me interesa conocer los planes disponibles.");
 
 export function Footer() {
+  const { contactInfo } = useApp();
+
+  const WA_NUMBER = contactInfo.whatsappNumber;
+  const WA_MSG = contactInfo.whatsappMessage;
   return (
     <footer style={{ background: "#1a1a1a" }}>
       {/* Main footer */}
@@ -47,7 +53,7 @@ export function Footer() {
             <div className="flex gap-3">
               {/* Instagram Corporativo - Color rojo Claro */}
               <a
-                href="https://www.instagram.com/comercial.phone.corporativo_?igsh=NW5mM3lzZWMwdjV5"
+                href={`https://www.instagram.com/${contactInfo.instagramCorp}`}
                 className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 relative group"
                 style={{ background: "rgba(218, 41, 28, 0.2)", color: "#DA291C" }}
                 title="Instagram Corporativo"
@@ -60,7 +66,7 @@ export function Footer() {
 
               {/* Instagram Personal - Gradiente Instagram */}
               <a
-                href="https://www.instagram.com/comercial.phone?igsh=MTZweWh1M21jdzMyag=="
+                href={`https://www.instagram.com/${contactInfo.instagramPersonal}`}
                 className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 relative group"
                 style={{ 
                   background: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
@@ -116,17 +122,19 @@ export function Footer() {
               <li className="flex items-center gap-2">
                 <Phone size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`} className="text-sm hover:text-white transition-colors" style={{ color: "#888" }}>
-                  +54 1137888582
+                  {contactInfo.phoneNumber}
+
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={15} className="flex-shrink-0" style={{ color: "#DA291C" }} />
                 <a 
-                  href="mailto:contactos@comercialphone.com.ar" 
+                  href={`mailto:${contactInfo.email}`} 
                   className="text-sm hover:text-white transition-colors" 
                   style={{ color: "#888" }}
                 >
-                  contactos@comercialphone.com.ar
+                    {contactInfo.email}
+
                 </a>
               </li>
             </ul>

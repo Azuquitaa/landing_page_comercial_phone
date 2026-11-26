@@ -69,6 +69,14 @@ if (!file_exists($dataFile)) {
         'plansPymes' => [],
         'slides' => [],
         'faqs' => [],
+        'contactInfo' => [
+        'whatsappNumber'   => '541137888582',
+        'whatsappMessage'  => 'Hola! Me interesa conocer los planes disponibles.',
+        'phoneNumber'      => '+54 11 3788-8582',
+        'email'            => 'contacto@comercialphone.com',
+        'instagramCorp'    => 'comercialphone',
+        'instagramPersonal'=> 'comercialphone.personal',
+    ],
         'lastUpdated' => date('c')
     ];
     
@@ -84,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 // POST: Guardar datos (requiere token)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-    $token = str_replace('Bearer ', '', $token);
+    // $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    // $token = str_replace('Bearer ', '', $token);
     
     if (empty($token)) {
         http_response_code(401);

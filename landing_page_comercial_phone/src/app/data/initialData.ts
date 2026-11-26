@@ -40,6 +40,26 @@ export interface FAQ {
   category: "hogar" | "movil" | "general";
 }
 
+// Agregá esta interfaz junto a las demás
+export interface ContactInfo {
+  whatsappNumber: string;      // solo dígitos, ej: "541137888582"
+  whatsappMessage: string;     // mensaje precargado
+  phoneNumber: string;         // número telefónico para mostrar/llamar
+  email: string;
+  instagramCorp: string;       // usuario sin @
+  instagramPersonal: string;   // usuario sin @
+}
+
+// Datos iniciales
+export const initialContactInfo: ContactInfo = {
+  whatsappNumber: "541137888582",
+  whatsappMessage: "Hola! Me interesa conocer los planes disponibles.",
+  phoneNumber: "+54 11 3788-8582",
+  email: "contacto@comercialphone.com",
+  instagramCorp: "comercialphone",
+  instagramPersonal: "comercialphone.personal",
+};
+
 export const initialPlansHogar: Plan[] = [
   {
     id: "h1",
@@ -301,71 +321,140 @@ export const initialPlansMovil: Plan[] = [
 export const initialPlansPymes: Plan[] = [
   {
     id: "p1",
-    name: "Pyme Básico",
-    promoText: "100 MB",
-    price: "$29.999",
-    shortDescription: "Internet dedicado para tu negocio",
-    priceNote: "por mes",
+    name: "Movistar 10 GB",
+    promoText: "10 GB",
+    price: "$20.805",
+    shortDescription: "70% OFF + 10 GB extra x 6 meses + IVA",
+    priceNote: "por mes + IVA",
     features: [
-      "100 MB simétricos",
-      "IP fija incluida",
-      "Soporte prioritario",
-      "Instalación sin cargo"
+      "10 GB de datos",
+      "+ 10 GB extra por 6 meses",
+      "Portabilidad incluida",
+      "Llamadas ilimitadas"
     ],
     benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
       "Facturación electrónica",
-      "Gestión de múltiples líneas",
-      "Asesor comercial dedicado",
-      "Sin permanencia"
-    ],
-    recommended: false,
-    category: "pymes"
-  },
-  {
-    id: "p2",
-    name: "Pyme Profesional",
-    promoText: "300 MB",
-    price: "$49.999",
-    shortDescription: "Internet + telefonía para equipos",
-    priceNote: "por mes",
-    features: [
-      "300 MB simétricos",
-      "2 líneas telefónicas",
-      "IP fija incluida",
-      "Soporte 24/7"
-    ],
-    benefits: [
-      "Facturación electrónica",
-      "Gestión de múltiples líneas",
-      "Asesor comercial dedicado",
-      "Backup 4G automático"
+      "Asesor comercial dedicado"
     ],
     recommended: true,
     badge: "Más Elegido",
     category: "pymes"
   },
   {
-    id: "p3",
-    name: "Pyme Empresa",
-    promoText: "500 MB",
-    price: "$79.999",
-    shortDescription: "Solución integral para empresas",
-    priceNote: "por mes",
+    id: "p2",
+    name: "Movistar 30 GB",
+    promoText: "30 GB",
+    price: "$27.735",
+    shortDescription: "70% OFF + 10 GB extra x 6 meses + IVA",
+    priceNote: "por mes + IVA",
     features: [
-      "500 MB simétricos",
-      "4 líneas telefónicas",
-      "IP fija + bloque de IPs",
-      "Soporte 24/7 prioritario"
+      "30 GB de datos",
+      "+ 10 GB extra por 6 meses",
+      "Portabilidad incluida",
+      "Llamadas ilimitadas"
     ],
     benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
       "Facturación electrónica",
-      "Gestión de múltiples líneas",
-      "Asesor comercial dedicado",
-      "Backup 4G automático",
-      "SLA garantizado"
+      "Asesor comercial dedicado"
     ],
     recommended: false,
-    badge: "Premium",
+    badge: "Movistar",
+    category: "pymes"
+  },
+  {
+    id: "p3",
+    name: "Personal 4 GB",
+    promoText: "4 GB",
+    price: "$17.520",
+    shortDescription: "60% OFF + 10 GB extra x 3 meses + IVA",
+    priceNote: "por mes + IVA",
+    features: [
+      "4 GB de datos",
+      "+ 10 GB extra por 3 meses",
+      "Portabilidad incluida",
+      "Llamadas ilimitadas"
+    ],
+    benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
+      "Facturación electrónica",
+      "Asesor comercial dedicado"
+    ],
+    recommended: false,
+    badge: "Personal",
+    category: "pymes"
+  },
+  {
+    id: "p4",
+    name: "Personal 10 GB",
+    promoText: "10 GB",
+    price: "$27.740",
+    shortDescription: "60% OFF + 10 GB extra x 3 meses + IVA",
+    priceNote: "por mes + IVA",
+    features: [
+      "10 GB de datos",
+      "+ 10 GB extra por 3 meses",
+      "Portabilidad incluida",
+      "Llamadas ilimitadas"
+    ],
+    benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
+      "Facturación electrónica",
+      "Asesor comercial dedicado"
+    ],
+    recommended: false,
+    badge: "Personal",
+    category: "pymes"
+  },
+  {
+    id: "p5",
+    name: "Línea Nueva 7 GB",
+    promoText: "7 GB",
+    price: "$10.860",
+    shortDescription: "80% OFF + 10 GB extra x 6 meses + IVA",
+    priceNote: "por mes + IVA",
+    features: [
+      "7 GB de datos",
+      "+ 10 GB extra por 6 meses",
+      "Línea nueva incluida",
+      "Llamadas ilimitadas"
+    ],
+    benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
+      "Facturación electrónica",
+      "Asesor comercial dedicado"
+    ],
+    recommended: false,
+    badge: "Línea Nueva",
+    category: "pymes"
+  },
+  {
+    id: "p6",
+    name: "Línea Nueva 30 GB",
+    promoText: "30 GB",
+    price: "$18.490",
+    shortDescription: "80% OFF + 10 GB extra x 6 meses + IVA",
+    priceNote: "por mes + IVA",
+    features: [
+      "30 GB de datos",
+      "+ 10 GB extra por 6 meses",
+      "Línea nueva incluida",
+      "Llamadas ilimitadas"
+    ],
+    benefits: [
+      "WhatsApp libre",
+      "Roaming incluido",
+      "Facturación electrónica",
+      "Asesor comercial dedicado"
+    ],
+    recommended: false,
+    badge: "Línea Nueva",
     category: "pymes"
   }
 ];

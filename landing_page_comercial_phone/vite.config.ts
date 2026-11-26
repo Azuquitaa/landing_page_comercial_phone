@@ -17,8 +17,8 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: '/comercial-phone/',
-  // base: '/',
+  // base: '/comercial-phone/',
+  base: '/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
@@ -36,8 +36,10 @@ export default defineConfig({
   //   }
   // },
   resolve: {
+    dedupe: ['react', 'react-dom'], 
     alias: {
       // Alias @ to the src directory
+      
       '@': path.resolve(__dirname, './src'),
     },
   },

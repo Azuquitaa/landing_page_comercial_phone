@@ -15,11 +15,7 @@ $contentFile = __DIR__ . '/../data/content.json';
 $backupFile = __DIR__ . '/../data/backup.json';
 $sessionsFile = __DIR__ . '/../data/sessions.json';
 
-// // Verificar token
-// $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-// $token = str_replace('Bearer ', '', $token);
-
-// Al inicio del archivo, después de los headers
+// ✅ FUNCIÓN PARA OBTENER TOKEN (compatible Ubuntu y Windows)
 function getBearerToken() {
     $token = '';
     if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
@@ -36,8 +32,18 @@ function getBearerToken() {
     return $token;
 }
 
-// Usar la función
 $token = getBearerToken();
+
+file_put_contents(__DIR__ . '/../data/debug_backup.log', 
+    "=== BACKUP TOKEN CHECK ===\n" .
+    "Fecha: " . date('c') . "\n" .
+    "Acción: " . ($_GET['action'] ?? 'ninguna') . "\n" .
+    "Token recibido: [" . $token . "]\n" .
+    "REDIRECT: " . (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION']) ? 'SI' : 'NO') . "\n" .
+    "HTTP_AUTH: " . (isset($_SERVER['HTTP_AUTHORIZATION']) ? 'SI' : 'NO') . "\n" .
+    "==========================\n",
+    FILE_APPEND
+);
 
 if (empty($token)) {
     http_response_code(401);
@@ -47,7 +53,7 @@ if (empty($token)) {
 
 if (!file_exists($sessionsFile)) {
     http_response_code(401);
-    echo json_encode(['error' => 'No autorizado']);
+    echo json_encode(['error' => 'No autorizado (archivo sessions.json no existe)']);
     exit;
 }
 
@@ -55,7 +61,7 @@ $sessions = json_decode(file_get_contents($sessionsFile), true) ?: [];
 
 if (!isset($sessions[$token])) {
     http_response_code(401);
-    echo json_encode(['error' => 'Token inválido']);
+    echo json_encode(['error' => 'Token inválido (no está en sessions.json)']);
     exit;
 }
 
@@ -71,18 +77,12 @@ $action = $_GET['action'] ?? '';
 
 switch ($action) {
     case 'backup':
-        error_log("Intentando backup. Content: $contentFile, Backup: $backupFile");
-        error_log("Content existe: " . (file_exists($contentFile) ? 'SI' : 'NO'));
-        error_log("Directorio data escribible: " . (is_writable(dirname($backupFile)) ? 'SI' : 'NO'));
-
         if (!file_exists($contentFile)) {
             echo json_encode(['error' => 'No hay datos para respaldar']);
             exit;
         }
         
         $content = file_get_contents($contentFile);
-    
-        // Escribir en backup
         $result = file_put_contents($backupFile, $content);
         
         if ($result === false) {
@@ -105,7 +105,36 @@ switch ($action) {
             echo json_encode(['error' => 'No hay backup disponible']);
             exit;
         }
-        
+
+        // ✅ LEER el backup ANTES de validar
+        $backupData = json_decode(file_get_contents($backupFile), true);
+
+        if (!$backupData) {
+            http_response_code(500);
+            echo json_encode(['error' => 'Backup corrupto o ilegible']);
+            exit;
+        }
+
+        // ✅ Validación: Evitar restaurar un backup viejo sin planes Pymes
+        if (!isset($backupData['plansPymes'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'El backup es antiguo y no contiene planes Pymes. Restauración cancelada.']);
+            exit;
+        }
+
+        // ✅ Rellenar contactInfo si el backup es viejo
+        if (!isset($backupData['contactInfo'])) {
+            $backupData['contactInfo'] = [
+                'whatsappNumber'    => '541137888582',
+                'whatsappMessage'   => 'Hola! Me interesa conocer los planes disponibles.',
+                'phoneNumber'       => '+54 11 3788-8582',
+                'email'             => 'contacto@comercialphone.com',
+                'instagramCorp'     => 'comercialphone',
+                'instagramPersonal' => 'comercialphone.personal',
+            ];
+            file_put_contents($backupFile, json_encode($backupData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        }
+
         copy($backupFile, $contentFile);
         echo json_encode([
             'success' => true,
@@ -115,7 +144,6 @@ switch ($action) {
         break;
         
     case 'reset':
-        // Solo admin puede resetear
         if ($session['role'] !== 'admin') {
             http_response_code(403);
             echo json_encode(['error' => 'Solo administradores pueden resetear']);
@@ -125,8 +153,17 @@ switch ($action) {
         $initialData = [
             'plansHogar' => [],
             'plansMovil' => [],
+            'plansPymes' => [],
             'slides' => [],
             'faqs' => [],
+            'contactInfo' => [
+                'whatsappNumber'    => '541137888582',
+                'whatsappMessage'   => 'Hola! Me interesa conocer los planes disponibles.',
+                'phoneNumber'       => '+54 11 3788-8582',
+                'email'             => 'contacto@comercialphone.com',
+                'instagramCorp'     => 'comercialphone',
+                'instagramPersonal' => 'comercialphone.personal',
+            ],
             'lastUpdated' => date('c'),
             'resetBy' => $session['username']
         ];
@@ -144,4 +181,3 @@ switch ($action) {
         http_response_code(400);
         echo json_encode(['error' => 'Acción no válida']);
 }
-?>

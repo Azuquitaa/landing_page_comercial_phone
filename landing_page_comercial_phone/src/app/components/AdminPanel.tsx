@@ -5,7 +5,7 @@ import { Plan, Slide, FAQ } from "../data/initialData";
 
 // const ADMIN_PASSWORD = "admin2024";
 
-type AdminTab = "hogar" | "movil" | "pymes" | "slides" | "faqs" | "usuarios";
+type AdminTab = "hogar" | "movil" | "pymes" | "slides" | "faqs" | "datos" | "usuarios";
 
 export function AdminPanel() {
   const {
@@ -24,6 +24,8 @@ export function AdminPanel() {
     setSlides,
     faqs,
     setFaqs,
+    contactInfo,
+    setContactInfo,
     currentUser,
     login,
     logout,
@@ -150,9 +152,9 @@ export function AdminPanel() {
       id: `${cat}_${Date.now()}`,
       name: "Nuevo Plan",
       price: "$0",
-      priceNote: "por mes",
-      features: ["Característica 1"],
-      benefits: ["Beneficio 1"],
+      priceNote: "", 
+      features: [""], 
+      benefits: [""], 
       recommended: false,
       category: cat,
     };
@@ -199,6 +201,7 @@ export function AdminPanel() {
     { id: "pymes", label: "Planes Pymes" },
     { id: "slides", label: "Slides" },
     { id: "faqs", label: "FAQs" },
+    { id: "datos", label: "Datos" },
     { id: "usuarios", label: "Usuarios", adminOnly: true },
   ];
 
@@ -460,12 +463,12 @@ export function AdminPanel() {
                       {/* TERCERA FILA: PriceNote */}
                       <div className="mb-3">
                         <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
-                          Nota de Precio (ej: por mes)
+                          Nota de Precio (ej: + IVA, por mes)
                         </label>
                         <input
                           value={plan.priceNote ?? ""}
                           onChange={(e) => updatePlan(currentPlans, currentSetter, plan.id, "priceNote", e.target.value)}
-                          placeholder="Ej: por mes"
+                          placeholder="Opcional (Ej: + IVA)"
                           className="w-full sm:w-1/3 px-3 py-2 rounded-lg text-sm outline-none"
                           style={{ border: "1.5px solid #E6E6E6" }}
                         />
@@ -675,6 +678,120 @@ export function AdminPanel() {
                     <Plus size={16} />
                     Agregar FAQ
                   </button>
+                </div>
+              )}
+
+              {/* Datos de contacto */}
+              {tab === "datos" && (
+                <div className="flex flex-col gap-5">
+                  <div className="rounded-xl p-5" style={{ border: "2px solid #E6E6E6" }}>
+                    <h3 className="text-sm font-bold mb-4" style={{ color: "#2D2D2D" }}>
+                      Datos de contacto
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {/* WhatsApp */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          WhatsApp (solo dígitos, con código país)
+                        </label>
+                        <input
+                          value={contactInfo.whatsappNumber}
+                          onChange={(e) =>
+                            setContactInfo({ ...contactInfo, whatsappNumber: e.target.value.replace(/\D/g, "") })
+                          }
+                          placeholder="Ej: 541137888582"
+                          className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                          style={{ border: "1.5px solid #E6E6E6" }}
+                        />
+                        <p className="text-[11px] mt-1" style={{ color: "#aaa" }}>
+                          Sin +, sin espacios. Ej: 541137888582
+                        </p>
+                      </div>
+
+                      {/* Mensaje WhatsApp */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Mensaje precargado de WhatsApp
+                        </label>
+                        <input
+                          value={contactInfo.whatsappMessage}
+                          onChange={(e) => setContactInfo({ ...contactInfo, whatsappMessage: e.target.value })}
+                          placeholder="Hola! Me interesa..."
+                          className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                          style={{ border: "1.5px solid #E6E6E6" }}
+                        />
+                      </div>
+
+                      {/* Teléfono */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Teléfono (formato visible)
+                        </label>
+                        <input
+                          value={contactInfo.phoneNumber}
+                          onChange={(e) => setContactInfo({ ...contactInfo, phoneNumber: e.target.value })}
+                          placeholder="+54 11 3788-8582"
+                          className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                          style={{ border: "1.5px solid #E6E6E6" }}
+                        />
+                      </div>
+
+                      {/* Email */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          value={contactInfo.email}
+                          onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
+                          placeholder="contacto@..."
+                          className="w-full px-3 py-2 rounded-lg text-sm outline-none"
+                          style={{ border: "1.5px solid #E6E6E6" }}
+                        />
+                      </div>
+
+                      {/* Instagram corporativo */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Instagram corporativo (sin @)
+                        </label>
+                        <div className="flex items-center">
+                          <span className="px-2 text-sm" style={{ color: "#717182" }}>@</span>
+                          <input
+                            value={contactInfo.instagramCorp}
+                            onChange={(e) => setContactInfo({ ...contactInfo, instagramCorp: e.target.value.replace(/^@/, "") })}
+                            placeholder="comercialphone"
+                            className="flex-1 px-3 py-2 rounded-lg text-sm outline-none"
+                            style={{ border: "1.5px solid #E6E6E6" }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Instagram personal */}
+                      <div>
+                        <label className="block text-xs font-semibold mb-1 uppercase tracking-wide" style={{ color: "#717182" }}>
+                          Instagram personal (sin @)
+                        </label>
+                        <div className="flex items-center">
+                          <span className="px-2 text-sm" style={{ color: "#717182" }}>@</span>
+                          <input
+                            value={contactInfo.instagramPersonal}
+                            onChange={(e) => setContactInfo({ ...contactInfo, instagramPersonal: e.target.value.replace(/^@/, "") })}
+                            placeholder="usuario.personal"
+                            className="flex-1 px-3 py-2 rounded-lg text-sm outline-none"
+                            style={{ border: "1.5px solid #E6E6E6" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl p-4 text-xs" style={{ background: "rgba(37,211,102,0.08)", color: "#2D2D2D" }}>
+                    💡 Estos datos se usan en el botón flotante de WhatsApp y en las secciones de contacto.
+                    Recordá hacer click en <strong>“Guardar cambios”</strong> abajo para persistirlos.
+                  </div>
                 </div>
               )}
 

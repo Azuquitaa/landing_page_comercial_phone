@@ -3,11 +3,13 @@ import {
   Plan,
   Slide,
   FAQ,
+  ContactInfo,
   initialPlansHogar,
   initialPlansMovil,
   initialPlansPymes,
   initialSlides,
   initialFAQs,
+  initialContactInfo,
 } from "../data/initialData";
 
 type Category = "hogar" | "movil" | "pymes";
@@ -32,6 +34,8 @@ interface AppContextValue {
   setSlides: (s: Slide[]) => void;
   faqs: FAQ[];
   setFaqs: (f: FAQ[]) => void;
+  contactInfo: ContactInfo;
+  setContactInfo: React.Dispatch<React.SetStateAction<ContactInfo>>;
   isAdminOpen: boolean;
   setIsAdminOpen: (v: boolean) => void;
   isLoggedIn: boolean;
@@ -57,8 +61,8 @@ const AppContext = createContext<AppContextValue | null>(null);
 
 // cambiar esto para local
 
-const API_URL = window.location.origin + '/comercial-phone/api';
-// const API_URL = window.location.origin + '/api';
+// const API_URL = window.location.origin + '/comercial-phone/api';
+const API_URL = window.location.origin + '/api';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>("movil");
@@ -69,6 +73,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [plansPymes, setPlansPymes] = useState<Plan[]>([]);
   const [slides, setSlides] = useState<Slide[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [contactInfo, setContactInfo] = useState<ContactInfo>(initialContactInfo);
+
   // const [slides, setSlides] = useState<Slide[]>(initialSlides);
   // const [faqs, setFaqs] = useState<FAQ[]>(initialFAQs);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -118,7 +124,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPlansPymes(data.plansPymes?.length > 0 ? data.plansPymes : initialPlansPymes);
         setSlides(data.slides?.length > 0 ? data.slides : initialSlides);
         setFaqs(data.faqs?.length > 0 ? data.faqs : initialFAQs);
-        
+        setContactInfo(data.contactInfo ?? initialContactInfo);
+
         // console.log('Datos cargados del servidor');
       } else {
         // Si falla, usar initialData
@@ -127,6 +134,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPlansPymes(initialPlansPymes);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
+        setContactInfo(initialContactInfo); 
       }
     } catch (err) {
       // console.log('⚠️ Error, usando datos locales');
@@ -135,12 +143,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setPlansPymes(initialPlansPymes);
       setSlides(initialSlides);
       setFaqs(initialFAQs);
+      setContactInfo(initialContactInfo); 
+
     } finally {
       setLoading(false);
     }
   }
 
-  //  CREAR BACKUP: Guarda estado actual como respaldo
+  //  CREAR BACKUP: Guarda estado actual como respaldoD:Dd
   async function createBackup(token?: string): Promise<boolean> {
     const tokenToUse = token || authToken;
     
@@ -203,6 +213,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPlansPymes(initialPlansPymes);
         setSlides(initialSlides);
         setFaqs(initialFAQs);
+        setContactInfo(initialContactInfo);
         // console.log('Contenido reseteado a valores originales');
         return true;
       }
@@ -278,7 +289,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         plansMovil,
         plansPymes,
         slides,
-        faqs
+        faqs,
+        contactInfo
       };
 
       const response = await fetch(`${API_URL}/data.php`, {
@@ -377,6 +389,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setSlides,
     faqs,
     setFaqs,
+    contactInfo,
+    setContactInfo,
     isAdminOpen,
     setIsAdminOpen,
     isLoggedIn,

@@ -162,7 +162,7 @@ export function Header() {
                 : { background: "#F5F5F5", color: "#2D2D2D" }
             }
           >
-            <Smartphone size={18} />
+            <Building2 size={18} />
             Plan Pymes
           </button>
           

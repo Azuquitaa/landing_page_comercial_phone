@@ -35,9 +35,9 @@ export function HeroPlanCard({ plan }: Props) {
 
   {/* Parte inferior */}
   <div
-    className="p-5 backdrop-blur-md"
+    className="p-5 sm:p-5"
     style={{
-      background: "rgba(0,0,0,.55)",
+      background: "rgba(0,0,0,.75)",
       color: "#fff",
     }}
   >
